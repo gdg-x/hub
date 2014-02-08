@@ -1,6 +1,11 @@
 {
   "name": "gdgx-hub",
-  "version": "0.0.0",
+  "description": "Everything GDG",
+  "homepage": "http://hub.gdgx.io",
+  "keywords": ["gdg", "hub", "api"],
+  "author": "Sebastian Mauer <maui@gdgac.org>",
+  "repository": {"type": "git", "url": "git://github.com/gdg-x/hub.git"},
+  "version": "0.0.1",
   "dependencies": {
     "express": "~3.4.3",
     "express-annotations": "*",
@@ -76,5 +81,11 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "licenses": [
+    {
+      "type": "Apache 2.0 License",
+      "url": "https://raw.github.com/gdg-x/hub/master/LICENSE"
+    }
+  ]
 }
