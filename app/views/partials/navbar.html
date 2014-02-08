@@ -1,0 +1,33 @@
+<div ng-controller="NavbarCtrl" class="navbar navbar-inverse navbar-fixed-top">
+<div class="color_bar"></div>
+    <div class="container">
+        <div class="pull-left">
+            <img src="images/gdgx_logo.png" />
+        </div>
+        <div class="pull-right" style="margin-top: 10px; margin-right: 10px;">
+            <div ng-switch="auth">
+                <div ng-switch-when="true">
+                    <div class="signed_in">
+                        {{email}}&nbsp;<img ng-src="https://profiles.google.com/s2/u/0/photos/profile/{{userId}}?sz=32" class="img-circle">
+                    </div>
+                </div>
+                <div ng-switch-default>
+                    <div ng-show="auth == false">
+                        <google-plus-signin clientid="748656608659" data-callback="signinCallback" data-postmessage="postmessage"></google-plus-signin>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                	<li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+    					<a ng-href="{{item.link}}">{{item.title}}</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

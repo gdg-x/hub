@@ -1,0 +1,23 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Nothing to see here...yet!</h1>
+    <p class="lead">
+      Powered by
+      <img src="images/yeoman.png" alt="I'm Yeoman"><br><br>
+      <small>Always a pleasure scaffolding your apps.</small>
+    </p>
+  </div>
+
+  <div class="row marketing">
+    <div ng-repeat="thing in awesomeThings">
+        <h4>{{thing.name}}</h4>
+        <p>{{thing.info}}</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2014 GDG[x]</p>
+  </div>
+</div>
