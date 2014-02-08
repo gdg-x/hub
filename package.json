@@ -5,6 +5,7 @@
   "keywords": ["gdg", "hub", "api"],
   "author": "Sebastian Mauer <maui@gdgac.org>",
   "repository": {"type": "git", "url": "git://github.com/gdg-x/hub.git"},
+  "bugs" : { "url" : "https://github.com/gdg-x/hub/issues" },
   "version": "0.0.1",
   "dependencies": {
     "express": "~3.4.3",
