@@ -8,3 +8,4 @@ heroku
 /views
 dist
 .idea
+newrelic_agent.log
