@@ -3,9 +3,7 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
-    mongoose = require('mongoose'),
-    newrelic = require('newrelic');
-
+    mongoose = require('mongoose');
 /**
  * Main application file
  */
@@ -15,6 +13,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Application Config
 var config = require('./lib/config/config');
+
+var newrelic = require('newrelic');
 
 // Connect to database
 var db = mongoose.connect(config.mongo.uri, config.mongo.options);
