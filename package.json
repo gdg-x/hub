@@ -32,7 +32,9 @@
     "newrelic": "*",
     "redis": "*",
     "node-forge": "*",
-    "async": "*"
+    "async": "*",
+    "cacher": "*",
+    "cacher-redis": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
