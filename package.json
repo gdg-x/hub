@@ -34,7 +34,10 @@
     "node-forge": "*",
     "async": "*",
     "cacher": "*",
-    "cacher-redis": "*"
+    "cacher-redis": "*",
+    "phantomjs": "*",
+    "node-phantom": "*"
+
   },
   "devDependencies": {
     "grunt": "~0.4.1",
