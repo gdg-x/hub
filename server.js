@@ -28,6 +28,17 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 // Passport Configuration
 require('./lib/config/passport')();
 
+if(config.env == 'production') {
+	var risky = require('./lib/risky');
+	risky.connect({
+		port: config.redis.port,
+		host: config.redis.host,
+		auth: config.redis.password,
+		id: process.env.OPENSHIFT_GEAR_UUID,
+		scope: 'risky'
+	});
+}
+
 var app = express();
 
 // Express settings
