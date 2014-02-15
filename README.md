@@ -3,6 +3,8 @@ GDG[x] Hub
 
 [![Build Status](https://travis-ci.org/gdg-x/hub.png?branch=master)](https://travis-ci.org/gdg-x/hub)
 
+The public instance of the GDG[x] Hub is hosted at [https://hub.gdgx.io]
+
 ## Install dependencies
 ```
 npm install
