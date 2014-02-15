@@ -5,7 +5,9 @@ angular.module('gdgxHubApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'directive.g+signin'
+  'd3',
+  'gdgxHubApp.directives.d3',
+  'directive.g+signin',
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
