@@ -37,7 +37,8 @@
     "cacher": "*",
     "cacher-redis": "*",
     "phantomjs": "*",
-    "node-phantom": "*"
+    "node-phantom": "*",
+    "mongoose-utilities": "*"
 
   },
   "devDependencies": {
