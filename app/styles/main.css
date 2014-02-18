@@ -5,9 +5,66 @@ body {
     -moz-transition: all .2s linear;
     -webkit-transition: all .2s linear;
     padding-top: 130px;
-    font-family: 'Open Sans';
-    background-color: #FAFAFA;
+    font-family: 'Roboto';
+    background-color: #EEEEEE;
     -webkit-font-smoothing: antialiased;
+}
+
+.masonry {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+}
+
+.masonry [class*="span"] {
+  float: none;
+}
+
+a h3 {
+  color: #000000;
+}
+
+a:hover h3 {
+  color: #000000;
+  text-decoration: none;
+}
+
+.angular-google-map img{max-width: inherit;}
+
+.angular-google-map-container { height: 400px; }
+
+.card-map .angular-google-map-container { height: 150px; }
+
+.card-wh-body {
+  padding: 10px;
+  margin-top: -20px;
+}
+
+.bold_metric {
+  font-family: 'Roboto Slab',sans-serif;
+  font-size: 5em;
+}
+
+.organizer {
+  margin-left: 0px;
+  margin-right: 20px;
+}
+
+.metric {
+  line-height: 5em;
+}
+
+.vert {
+  display: inline-block;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+
+}
+
+.card-outheader {
+  font-family: 'Roboto Slab',sans-serif;
 }
 
 .footer {
@@ -40,6 +97,7 @@ body {
 .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
   border-color: #ffffff;
   color: #ffffff;
+  font-weight: normal;
 }
 
 .navbar .nav > li > a:hover, .navbar .nav > li > a:focus {
