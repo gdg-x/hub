@@ -17,6 +17,7 @@ body {
 
 .masonry [class*="span"] {
   float: none;
+  display: inline-block;
 }
 
 a h3 {
