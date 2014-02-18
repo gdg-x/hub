@@ -25,11 +25,12 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
 
+var risky = require('./lib/risky');
+
 // Passport Configuration
 require('./lib/config/passport')();
 
 if(config.env == 'production') {
-	var risky = require('./lib/risky');
 	risky.connect({
 		port: config.redis.port,
 		host: config.redis.host,
@@ -38,6 +39,7 @@ if(config.env == 'production') {
 		scope: 'risky'
 	});
 }
+require('./lib/tasks')();
 
 var app = express();
 
