@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row">
+		<h3>{{event.title}}</h3>
+	</div>
+	<div class="row">
+		<div class="span9">
+			<div class="card">
+				<div class="card-wh-body">
+					<div ng-bind-html="event.about"></div>
+				</div>
+			</div>
+		</div>
+		<div class="span3">
+			<div class="row">
+				<div class="card span3">
+					<div class="card-wh-body">
+						<div ng-switch on="!!event.geo">
+							<div ng-switch-when="true">
+								<google-map center="event.geo" zoom="5">
+									<marker coords='event.geo'>
+										
+									</marker>
+								</google-map>
+							</div>
+							<div ng-switch-default>...</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="card span3">
+					<div class="card-wh-body">
+						{{event.location}}<br/><br/>
+						<a ng-href="https://maps.google.com/maps?daddr={{event.location}}">Get directions</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<div class="span1">
+			<img ng-show="chapter._id != undefined" class="pull-right" style="margin-top: 11px;" ng-src="http://profiles.google.com/s2/u/0/photos/profile/{{chapter._id}}?sz=70"/>
+		</div>
+		<div style="margin-left: 10px" class="span11">
+			<h3>{{chapter.name}}</h3>
+			<span>{{chapter.city}}, {{chapter.country}}</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span8">
+			<div class="card">
+				<div class="card-wh-body" ng-bind-html="about">
+				</div>
+			</div>
+			<h3>Organizers</h3>
+			<div ng-repeat="organizer in chapter.organizers" class="span2 organizer" gplus-person gplus-id="organizer"></div>
+		</div>
+		<div class="span4">
+			<div ng-switch on="!!chapter.geo">
+				<div class="card" ng-switch-when="true">
+					<div class="card-wh-body">
+						<google-map center="chapter.geo" zoom="10">
+							<marker coords='chapter.geo'>
+							</marker>
+						</google-map>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+		</div>
+	</div>
+</div>

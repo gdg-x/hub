@@ -5,6 +5,18 @@ angular.module('gdgxHubApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },
+    {
+      'title': 'Chapters',
+      'link': '/chapters'
+    },
+    {
+      'title': 'Events',
+      'link': '/events'
+    },
+    {
+      'title': 'Statistics',
+      'link': '/statistics'
     }];
     
     $scope.isActive = function(route) {

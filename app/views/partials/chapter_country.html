@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<h3>GDG Chapters in {{country}}</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div ng-switch on="!!chapters.0.geo">
+				<div class="card" ng-switch-when="true">
+					<div class="card-wh-body">
+						<google-map center="chapters.0.geo" zoom="4">
+							<marker ng-repeat="chapter in chapters" coords='chapter.geo'>
+							</marker>
+						</google-map>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-left: 25px;">
+		<div class="span2 organizer" ng-repeat="chapter in chapters">
+			<div class="card people">
+				<div class="card-top green">
+					<google-map style="width: 170px; height:150px" class="card-map" center="chapter.geo" zoom="10" options="{disableDefaultUI: true, scrollwheel: false}">
+						<marker coords='chapter.geo'/>
+					</google-map>
+				</div>
+				<div class="card-info">
+					<a class="title" href="#">{{chapter.name}}</a>
+					<div class="desc">
+						{{chapter.city}}, <span ng-show="chapter.state != undefined">{{chapter.state}},</span> {{chapter.country}}
+					</div>
+				</div>
+				<div class="card-bottom">
+					<a ng-href="https://plus.google.com/{{gplusId}}"><button class="btn btn-block">Profile on G+</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

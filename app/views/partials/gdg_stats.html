@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+   <div class="span12">
+      <h3 class="card-outheader">Hours</h3>
+      <div class="card metric">
+        <div class="card-wh-body">
+          <div>
+            <span class="bold_metric">{{upcomingHours}}</span>
+            <span class="">hrs UPCOMING</span>
+            <span class="bold_metric">{{totalHours}}</span>
+            <span class="">hrs TOTAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <h3 class="card-outheader">Topics for Upcoming Events</h3>
+      <div class="card stat">
+        <div class="card-wh-body">
+          <div google-chart chart="upcomingTagsChart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <h3 class="card-outheader">Topics for Past Events</h3>
+      <div class="card stat">
+        <div class="card-wh-body">
+          <div google-chart chart="pastTagsChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <h3 class="card-outheader">Next 5 Events</h3>
+      <div class="card stat">
+        <div class="card-wh-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Start</th>
+                <th>End</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="event in nextEvents">
+                <td><img width="32" ng-src="https://developers.google.com/{{event.iconUrl}}"></td>
+                <td><a ng-href="/events/{{event._id}}"/>{{event.title}}</a></td>
+                <td>{{event.start}}</td>
+                <td>{{event.end}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<!--<google-map center="{ latitude: 0, longitude: 0}" zoom="2">
+				<marker ng-repeat="chapter in chapters_flat" coords='chapter.geo'>
+				</marker>
+			</google-map>-->
+		</div>
+	</div>
+	<div class="row masonry">
+		<div ng-repeat="(country, items) in chapters" class="span4">
+			<a ng-href="/chapters/country/{{country}}"><h3>{{country}}</h3></a>
+			<div class="card">
+				<div class="card-wh-body">
+					<div ng-repeat="chapter in items">
+						<a ng-href="/chapters/{{chapter._id}}">{{chapter.name}}</a> <img ng-show="chapter.status == 'incubating'" ng-src="/images/incubating.png">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
