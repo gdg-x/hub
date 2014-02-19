@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<h3>Events</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="btn-group">
+				<button class="btn btn-success" ng-click="changeCalendarView('agendaDay', allCalendar)">Day</button>
+	            <button class="btn btn-success" ng-click="changeCalendarView('agendaWeek', allCalendar)">Week</button>
+	            <button class="btn btn-success" ng-click="changeCalendarView('month', allCalendar)">Month</button>
+            </div>
+			<div ui-calendar="allCalendarConfig" config="allCalendarConfig" ng-model="eventSource" calendar="allCalendar"></div>
+		</div>
+	</div>
+</div>

@@ -10,6 +10,24 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.gdg {
+  font-family: "Open Sans";
+  font-size: 24pt;
+  font-weight: 800;
+  color: #6d6e71;
+}
+
+.gdg_chapter {
+  font-family: "Open Sans";
+  font-size: 23pt;
+  color: #6d6e71;
+  font-weight: 600;
+}
+
+.fc-header-title h2 {
+  font-size: 15pt;
+}
+
 .masonry {
   -webkit-column-count: 3;
   -moz-column-count: 3;

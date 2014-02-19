@@ -40,9 +40,8 @@ angular.module('gdgxHubApp')
       $scope.chapters = data;
     });
   })
-  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams) {
+  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location) {
     $http.get("/api/v1/chapters/"+$routeParams['chapterId']).success(function(data) {
-      
       if(data.geo) {
         data.geo.latitude = data.geo.lat;
         data.geo.longitude = data.geo.lng;
@@ -55,5 +54,46 @@ angular.module('gdgxHubApp')
     $http.get("https://www.googleapis.com/plus/v1/people/"+$routeParams['chapterId']+"?fields=aboutMe&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg").success(function(data) {
       $scope.about = data.aboutMe;
     });
+
+    $scope.chapterCalendar = {};
+
+    $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
+      $scope.$apply(function() {
+        $location.path( "/events/"+event.id );
+      });
+    };
+
+    $scope.chapterCalendarConfig = {
+      timeFormat: {
+        '': "h(:mm)t",
+        "month": "h(:mm)t",
+        agenda: "h:mm{ - h:mm}"
+      },
+      eventClick: $scope.alertOnEventClick
+    };
+
+    $scope.changeCalendarView = function(view,calendar) {
+      calendar.fullCalendar('changeView',view);
+    };
+
+    $scope.events = function (start, end, callback) {
+      $http.get("/api/v1/chapters/"+$routeParams['chapterId']+"/events/"+start.getTime()+"/"+end.getTime()).success(function(data) {
+        var events = [];
+
+        for(var i = 0; i < data.length; i++) {
+          events.push({
+            title: data[i].title,
+            start: data[i].start,
+            id: data[i]._id,
+            end: data[i].end,
+            allDay: data[i].allDay
+          });
+        }
+
+        callback(events);
+      });
+    };
+
+    $scope.eventSource = [ $scope.events ];
 
   });

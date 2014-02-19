@@ -9,15 +9,22 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="span8">
+		<div class="span7">
 			<div class="card">
 				<div class="card-wh-body" ng-bind-html="about">
 				</div>
 			</div>
-			<h3>Organizers</h3>
-			<div ng-repeat="organizer in chapter.organizers" class="span2 organizer" gplus-person gplus-id="organizer"></div>
+			<h3>Event Calendar</h3>
+			<div class="span7" style="margin-left: 0px">
+				<div class="btn-group">
+					<button class="btn btn-success" ng-click="changeCalendarView('agendaDay', chapterCalendar)">Day</button>
+		            <button class="btn btn-success" ng-click="changeCalendarView('agendaWeek', chapterCalendar)">Week</button>
+		            <button class="btn btn-success" ng-click="changeCalendarView('month', chapterCalendar)">Month</button>
+	            </div>
+				<div ui-calendar="chapterCalendarConfig" ng-model="eventSource" calendar="chapterCalendar"></div>
+			</div>
 		</div>
-		<div class="span4">
+		<div class="span5">
 			<div ng-switch on="!!chapter.geo">
 				<div class="card" ng-switch-when="true">
 					<div class="card-wh-body">
@@ -27,6 +34,10 @@
 						</google-map>
 					</div>
 				</div>
+			</div>
+			<h3>Organizers</h3>
+			<div style="margin-left: 0px">
+				<div ng-repeat="organizer in chapter.organizers" class="span2 organizer" gplus-person gplus-id="organizer"></div>
 			</div>
 		</div>
 	</div>
