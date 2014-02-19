@@ -39,6 +39,10 @@ angular.module('gdgxHubApp', [
         templateUrl: 'partials/event',
         controller: 'EventDetailCtrl'
       })
+      .when('/developers/api', {
+        templateUrl: 'partials/api',
+        controller: 'ApiCtrl'
+      })
       .when('/statistics', {
         templateUrl: 'partials/gdg_stats',
         controller: 'GdgStatsCtrl'
