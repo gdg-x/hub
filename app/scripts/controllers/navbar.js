@@ -17,6 +17,15 @@ angular.module('gdgxHubApp')
     {
       'title': 'Statistics',
       'link': '/statistics'
+    },
+    {
+      'title': 'API',
+      'link': '/developers/api'
+    }];
+
+    $scope.authed_menu = [{
+      'title': 'Home',
+      'link': '/'
     }];
     
     $scope.isActive = function(route) {

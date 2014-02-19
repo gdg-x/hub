@@ -8,7 +8,7 @@
             <div ng-switch="auth">
                 <div ng-switch-when="true">
                     <div class="signed_in">
-                        {{email}}&nbsp;<img ng-src="https://profiles.google.com/s2/u/0/photos/profile/{{userId}}?sz=32" class="img-circle">
+                        {{email}}&nbsp;&nbsp;<img ng-src="https://profiles.google.com/s2/u/0/photos/profile/{{userId}}?sz=32" class="img-circle">
                     </div>
                 </div>
                 <div ng-switch-default>
@@ -26,6 +26,13 @@
                 	<li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
     					<a ng-href="{{item.link}}">{{item.title}}</a>
 					</li>
+                </ul>
+            </div>
+            <div class="nav-collapse collapse pull-right" ng-show="auth == true">
+                <ul class="nav">
+                    <li ng-repeat="item in authed_menu" ng-class="{active: isActive(item.link)}">
+                        <a ng-href="{{item.link}}">{{item.title}}</a>
+                    </li>
                 </ul>
             </div>
         </div>
