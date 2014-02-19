@@ -18,12 +18,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="margin-left: 25px;">
+	<div class="row chapter_country">
 		<div class="span2 organizer" ng-repeat="chapter in chapters">
+			<a ng-href="/chapters/{{chapter._id}}">
 			<div class="card people">
 				<div class="card-top green">
 					<google-map style="width: 170px; height:150px" class="card-map" center="chapter.geo" zoom="10" options="{disableDefaultUI: true, scrollwheel: false}">
-						<marker coords='chapter.geo'/>
+						<marker coords='chapter.geo'></marker>
 					</google-map>
 				</div>
 				<div class="card-info">
@@ -33,9 +34,10 @@
 					</div>
 				</div>
 				<div class="card-bottom">
-					<a ng-href="https://plus.google.com/{{gplusId}}"><button class="btn btn-block">Profile on G+</button></a>
+					<a ng-href="https://plus.google.com/{{chapter._id}}"><button class="btn btn-block">Profile on G+</button></a>
 				</div>
 			</div>
+			</a>
 		</div>
 	</div>
 </div>

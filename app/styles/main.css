@@ -24,6 +24,10 @@ body {
   font-weight: 600;
 }
 
+.chapter_country {
+      margin-left: 25px;
+}
+
 .fc-header-title h2 {
   font-size: 15pt;
 }
@@ -64,8 +68,9 @@ a:hover h3 {
 }
 
 .organizer {
-  margin-left: 0px;
-  margin-right: 20px;
+  margin-left: 6px;
+  margin-right: 9px;
+  width: 170px;
 }
 
 .metric {
@@ -192,6 +197,28 @@ li {
 @media (max-width: 979px) {
     body {
         padding-top: 0;
+    }
+
+    .chapter_country {
+      margin-left: auto;
+    }
+
+    .organizer {
+      margin-left: 6px;
+      margin-right: 4px;
+    }
+}
+
+@media (max-width: 767px) {
+    .organizer {
+        margin-left: 6px;
+        margin-right: 0px;
+        width: 170px;
+        float: left;
+    }
+
+    .chapter_country {
+      margin-left: auto;
     }
 }
 

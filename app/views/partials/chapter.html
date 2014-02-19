@@ -9,13 +9,13 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="span7">
+		<div class="span8">
 			<div class="card">
 				<div class="card-wh-body" ng-bind-html="about">
 				</div>
 			</div>
 			<h3>Event Calendar</h3>
-			<div class="span7" style="margin-left: 0px">
+			<div class="span8" style="margin-left: 0px">
 				<div class="btn-group">
 					<button class="btn btn-success" ng-click="changeCalendarView('agendaDay', chapterCalendar)">Day</button>
 		            <button class="btn btn-success" ng-click="changeCalendarView('agendaWeek', chapterCalendar)">Week</button>
@@ -24,7 +24,7 @@
 				<div ui-calendar="chapterCalendarConfig" ng-model="eventSource" calendar="chapterCalendar"></div>
 			</div>
 		</div>
-		<div class="span5">
+		<div class="span4">
 			<div ng-switch on="!!chapter.geo">
 				<div class="card" ng-switch-when="true">
 					<div class="card-wh-body">
