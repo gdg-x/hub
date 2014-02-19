@@ -52,5 +52,15 @@ angular.module('gdgxHubApp')
 	    	delete data.geo.lng;
     	}
     	$scope.event = data;
+
+      $http.get("/api/v1/chapters/"+$scope.event.chapter).success(function(data, status, headers, config) {
+        if(data.geo) {
+          data.geo.latitude = data.geo.lat;
+          data.geo.longitude = data.geo.lng;
+          delete data.geo.lat;
+          delete data.geo.lng;
+        }
+        $scope.chapter = data;
+      });
   	});
   });
