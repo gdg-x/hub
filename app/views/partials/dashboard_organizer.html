@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="span9">
+			<h3>Hi there. Glad to have you onboard.</h3>
+		</div>
+		<div class="span3">
+			<h3>Your GDGs</h3>
+			<div class="card">
+				<div class="card-wh-body">
+					<div ng-repeat="chapter in chapters">
+						<a ng-href="/chapters/{{chapter.id}}">{{chapter.name}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

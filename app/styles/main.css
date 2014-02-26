@@ -199,8 +199,46 @@ li {
         padding-top: 0;
     }
 
+    #logged_in_email {
+      display: none;
+    }
+
+    #top_bar {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    .nav {
+      background-color: #444444;
+    }
+
+    ul.nav {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    #navbar ul.nav > li > a {
+      font-weight: normal;
+      color: #eeeeee;
+    }
+
+    #navbar ul.nav > li > a:hover {
+      background-color: rgba(0,0,0,0);
+    }
+
+    #navbar {
+      padding: 0px;
+      height: 20px;
+      min-height: 20px;
+      margin-top: 10px;
+    }
+
     .chapter_country {
       margin-left: auto;
+    }
+
+    .navbar_open .nav-collapse {
+      overflow: visible;
     }
 
     .organizer {

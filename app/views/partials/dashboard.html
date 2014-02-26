@@ -1,0 +1,8 @@
+<div ng-switch on="organizer">
+	<div ng-switch-when="true">
+		<div ng-include="'partials/dashboard_organizer'"></div>
+	</div>
+	<div ng-switch-default>
+		<div ng-include="'partials/dashboard_user'"></div>
+	</div>
+</div>

@@ -1,6 +1,6 @@
 <div ng-controller="NavbarCtrl" class="navbar navbar-inverse navbar-fixed-top">
 <div class="color_bar"></div>
-    <div class="container">
+    <div class="container" id="top_bar">
         <div class="pull-left">
             <img src="images/gdgx_logo.png" />
         </div>
@@ -8,7 +8,7 @@
             <div ng-switch="auth">
                 <div ng-switch-when="true">
                     <div class="signed_in">
-                        {{email}}&nbsp;&nbsp;<img ng-src="https://profiles.google.com/s2/u/0/photos/profile/{{userId}}?sz=32" class="img-circle">
+                        <span id="logged_in_email">{{email}}</span>&nbsp;&nbsp;<img ng-src="https://profiles.google.com/s2/u/0/photos/profile/{{userId}}?sz=32" class="img-circle">
                     </div>
                 </div>
                 <div ng-switch-default>
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="navbar-inner">
+    <div class="navbar-inner" id="navbar">
         <div class="container">
             <div class="nav-collapse collapse">
                 <ul class="nav">

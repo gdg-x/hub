@@ -19,6 +19,14 @@ angular.module('gdgxHubApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
+      .when('/dashboard', {
+        templateUrl: 'partials/dashboard',
+        controller: 'DashboardCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'partials/about',
+        controller: 'AboutCtrl'
+      })
       .when('/chapters', {
         templateUrl: 'partials/chapters',
         controller: 'ChapterCtrl'
@@ -55,17 +63,28 @@ angular.module('gdgxHubApp', [
   })
   .run(function ($rootScope, $location, $http, Utilities) {
     $rootScope.auth = undefined;
+
+    $rootScope.$on('$routeChangeSuccess', function(event) {
+      ga('send', 'pageview', {'page': $location.path()});
+    });
+
     $rootScope.$on('event:google-plus-signin-success', function (event,authResult) {
       // Send login to server or save into cookie   $rootScope.$apply(function() {
 
       Utilities.decodeJwt(authResult['id_token'], function(claims) {
         if(authResult['status']['signed_in']) {
-          $http.post('/signin', { code: authResult['code'] }).success(function() {
+          $http.post('/signin', { code: authResult['code'] }).success(function(data) {
+            if(data.user == claims.sub) {
               $rootScope.auth = authResult['status']['signed_in'];
               $rootScope.authResult = authResult;
               $rootScope.email = claims['email'];
               $rootScope.userId = claims['sub'];
               $rootScope.$broadcast("authenticated");
+              $rootScope.chapters = data.chapters;
+              $rootScope.organizer = (data.chapters.length > 0);
+            } else {
+              alert("ID Missmatch");
+            }
           });
         }
       });
