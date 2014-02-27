@@ -10,6 +10,36 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.post {
+  background: #2ca4f0;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.get {
+  background: #13c500;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.delete {
+  background: #ef6464;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  border-radius: 4px;
+}
+
+#group_pic {
+  background: url('../images/gdg_group_pic.jpg');
+  height: 200px;
+  background-position: center center;
+}
+
 .gdg {
   font-family: "Open Sans";
   font-size: 24pt;

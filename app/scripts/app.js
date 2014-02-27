@@ -61,8 +61,23 @@ angular.module('gdgxHubApp', [
       
     $locationProvider.html5Mode(true);
   })
-  .run(function ($rootScope, $location, $http, Utilities) {
-    $rootScope.auth = undefined;
+  .run(function ($rootScope, $location, $http, $window, Utilities) {
+    $rootScope.user = {
+          authResult: undefined,
+          auth: false,
+        };
+
+    $rootScope.supportsGeo = $window.navigator.geolocation != undefined;
+
+    if($rootScope.supportsGeo) {
+      $window.navigator.geolocation.getCurrentPosition(function(position) {
+          $rootScope.$apply(function() {
+              $rootScope.position = position;
+          });
+      }, function(error) {
+          console.log(error);
+      });
+    }
 
     $rootScope.$on('$routeChangeSuccess', function(event) {
       ga('send', 'pageview', {'page': $location.path()});
@@ -75,13 +90,15 @@ angular.module('gdgxHubApp', [
         if(authResult['status']['signed_in']) {
           $http.post('/signin', { code: authResult['code'] }).success(function(data) {
             if(data.user == claims.sub) {
-              $rootScope.auth = authResult['status']['signed_in'];
-              $rootScope.authResult = authResult;
-              $rootScope.email = claims['email'];
-              $rootScope.userId = claims['sub'];
+              $rootScope.user = {
+                auth: authResult['status']['signed_in'],
+                authResult: authResult,
+                email: claims['email'],
+                userId: claims['sub'],
+                chapters: data.chapters,
+                organizer: (data.chapters.length > 0)
+              };
               $rootScope.$broadcast("authenticated");
-              $rootScope.chapters = data.chapters;
-              $rootScope.organizer = (data.chapters.length > 0);
             } else {
               alert("ID Missmatch");
             }
@@ -93,8 +110,10 @@ angular.module('gdgxHubApp', [
     $rootScope.$on('event:google-plus-signin-failure', function (event,authResult) {
       // Auth failure or signout detected
       $rootScope.$apply(function() {
-        $rootScope.authResult = undefined;
-        $rootScope.auth = false;
+        $rootScope.user = {
+          authResult: undefined,
+          auth: false,
+        };
       });
     });
   });
