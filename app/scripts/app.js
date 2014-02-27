@@ -68,6 +68,14 @@ angular.module('gdgxHubApp', [
           auth: false,
         };
 
+    $rootScope.toggleMenu = function() {
+      if($rootScope.menu_toggle) {
+        $rootScope.menu_toggle = "";
+      } else {
+        $rootScope.menu_toggle = "navbar_open";
+      }
+    }
+
     $rootScope.supportsGeo = $window.navigator.geolocation != undefined;
 
     if($rootScope.supportsGeo) {

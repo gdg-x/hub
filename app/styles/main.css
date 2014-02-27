@@ -10,6 +10,19 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+#menu_btn {
+  float: right;
+  margin-left: 15px;
+  font-size: 33px;
+  border-radius: 5px;
+  padding: 4px;
+  padding-top: 6px;
+  border: 1px solid #c0c0c0;
+  margin-right: 0px;
+  margin-top: -6px;
+  display: none;
+}
+
 .post {
   background: #2ca4f0;
   color: #FFFFFF;
@@ -238,6 +251,10 @@ li {
       padding-right: 5px;
     }
 
+    #menu_btn {
+      display: block;
+    }
+
     .nav {
       background-color: #444444;
     }
@@ -250,6 +267,11 @@ li {
     #navbar ul.nav > li > a {
       font-weight: normal;
       color: #eeeeee;
+    }
+
+    .navbar .container {
+      width: auto;
+      margin-left: 0px;
     }
 
     #navbar ul.nav > li > a:hover {

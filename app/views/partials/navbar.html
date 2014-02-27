@@ -6,12 +6,13 @@
         </div>
         <div class="pull-right" style="margin-top: 10px; margin-right: 10px;">
             <div ng-switch="user.auth">
-                <div ng-switch-when="true">
+                <div class="pull-right" id="menu_btn" ng-click="toggleMenu()"><i class="fa fa-align-justify"></i></div>
+                <div ng-switch-when="true" class="pull-right">
                     <div class="signed_in">
                         <span id="logged_in_email">{{user.email}}</span>&nbsp;&nbsp;<img ng-src="https://profiles.google.com/s2/u/0/photos/profile/{{user.userId}}?sz=32" class="img-circle">
                     </div>
                 </div>
-                <div ng-switch-default>
+                <div ng-switch-default class="pull-right">
                     <div ng-show="auth == false">
                         <google-plus-signin clientid="748656608659" data-callback="signinCallback" data-postmessage="postmessage"></google-plus-signin>
                     </div>
@@ -19,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="navbar-inner" id="navbar">
+    <div class="navbar-inner" id="navbar" ng-class="menu_toggle">
         <div class="container">
             <div class="nav-collapse collapse">
                 <ul class="nav">
