@@ -25,6 +25,8 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
 
+require('./lib/fixtures')();
+
 var risky = require('./lib/risky');
 
 // Passport Configuration
