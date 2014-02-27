@@ -1,1 +1,23 @@
-API ftw!
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<h2>API Specification</h2>
+			<div class="card">
+				<div class="card-wh-body">
+					{{restDiscovery.title}} Version: {{restDiscovery.version}}, BaseURL: {{restDiscovery.baseUrl}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div ng-repeat="route in restDiscovery.resources.url.methods" class="span6 card">
+			<div class="card-wh-body">
+				<div class="clearfix">
+					<span ng-class="route.method">{{route.method|uppercase}}</span>
+					<div class="pull-right">{{route.path}}</div>
+				</div>
+				{{route.doc.summary}}
+			</div>
+		</div>
+	</div>
+</div>
