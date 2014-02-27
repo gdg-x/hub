@@ -12,7 +12,8 @@
     "angular-directive.g-signin": "*",
     "angular-google-maps": "*",
     "angular-google-chart": "*",
-    "angular-ui-calendar": "*"
+    "angular-ui-calendar": "*",
+    "angular-cache": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.9",

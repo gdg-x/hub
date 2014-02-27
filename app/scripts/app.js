@@ -12,6 +12,7 @@ angular.module('gdgxHubApp', [
   'gdgxHubApp.directives.gplus',
   'gdgxHubApp.directives.d3',
   'directive.g+signin',
+  'jmdobry.angular-cache'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
