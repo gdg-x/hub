@@ -9,7 +9,7 @@ angular.module('gdgxHubApp')
 		options: {
       "pieHole": 0.4,
       "chartArea": {
-        top: 0,
+        top: 8,
         height: "90%"
       }
     },
@@ -27,7 +27,7 @@ angular.module('gdgxHubApp')
     options: {
       "pieHole": 0.4,
       "chartArea": {
-        top: 0,
+        top: 8,
         height: "90%"
       }
     },
