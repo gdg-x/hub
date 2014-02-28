@@ -8,6 +8,7 @@ angular.module('gdgxHubApp', [
   'd3',
   'googlechart',
   'ui.calendar',
+  'ui.bootstrap',
   'google-maps',
   'gdgxHubApp.directives.gplus',
   'gdgxHubApp.directives.d3',
