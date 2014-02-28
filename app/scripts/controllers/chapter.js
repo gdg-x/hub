@@ -2,9 +2,10 @@
 
 angular.module('gdgxHubApp')
   .controller('ChapterCtrl', function ($scope, $http) {
-	$http.get("/api/v1/chapters?limit=999&fields=_id,name,geo,country,status&sort=country").success(function(data, status, headers, config) {
+	$http.get("/api/v1/chapters?perpage=999&fields=_id,name,geo,country,status&sort=country").success(function(resp, status, headers, config) {
 
     	var chapters = {};
+      var data = resp.items;
     	for(var i = 0; i < data.length; i++) {
     		var chapter = data[i];
 
@@ -26,8 +27,9 @@ angular.module('gdgxHubApp')
   })
   .controller('ChapterCountryCtrl', function ($scope, $http, $routeParams) {
     $scope.country = $routeParams['country'];
-    $http.get("/api/v1/chapters/country/"+$routeParams['country']+"?sort=name").success(function(data) {
+    $http.get("/api/v1/chapters/country/"+$routeParams['country']+"?sort=name").success(function(resp) {
       
+      var data = resp.items;
       for(var i = 0; i < data.length; i++) {
         if(data[i].geo) {
           data[i].geo.latitude = data[i].geo.lat;
@@ -77,8 +79,9 @@ angular.module('gdgxHubApp')
     };
 
     $scope.events = function (start, end, callback) {
-      $http.get("/api/v1/chapters/"+$routeParams['chapterId']+"/events/"+start.getTime()+"/"+end.getTime()).success(function(data) {
+      $http.get("/api/v1/chapters/"+$routeParams['chapterId']+"/events/"+start.getTime()+"/"+end.getTime()).success(function(resp) {
         var events = [];
+        var data = resp.items;
 
         for(var i = 0; i < data.length; i++) {
           events.push({

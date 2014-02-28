@@ -39,7 +39,6 @@
     "cacher-redis": "*",
     "phantomjs": "*",
     "node-phantom": "*",
-    "mongoose-utilities": "*",
     "superagent-retry": "*"
   },
   "devDependencies": {
