@@ -5,6 +5,9 @@ GDG[x] Hub
 
 The public instance of the GDG[x] Hub is hosted at [https://hub.gdgx.io]
 
+## Required tools
+* mongodb
+
 ## Install dependencies
 ```
 npm install
