@@ -39,8 +39,8 @@ angular.module('gdgxHubApp')
     }
   }
 
-  $http.get("/api/v1/events?limit=5&sort=start").success(function(data, status, headers, config) {
-    $scope.nextEvents = data;
+  $http.get("/api/v1/events?perpage=5&sort=start").success(function(data, status, headers, config) {
+    $scope.nextEvents = data.items;
   });
 
   $http.get("/api/v1/events/stats").success(function(data, status, headers, config) {
