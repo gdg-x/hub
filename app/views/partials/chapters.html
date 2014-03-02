@@ -9,10 +9,10 @@
 	</div>
 	<div class="row masonry">
 		<div ng-repeat="(country, items) in chapters" class="span4">
-			<a ng-href="/chapters/country/{{country}}"><h3>{{country}}</h3></a>
+			<a ng-href="/chapters/country/{{items.code}}"><h3>{{country}}</h3></a>
 			<div class="card">
 				<div class="card-wh-body">
-					<div ng-repeat="chapter in items">
+					<div ng-repeat="chapter in items.chapters">
 						<a ng-href="/chapters/{{chapter._id}}">{{chapter.name}}</a> <img ng-show="chapter.status == 'incubating'" ng-src="/images/incubating.png">
 					</div>
 				</div>

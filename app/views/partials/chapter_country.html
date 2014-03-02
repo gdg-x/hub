@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<h3>GDG Chapters in {{country}}</h3>
+			<h3>GDG Chapters in {{chapters.0.country.name}}</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -30,7 +30,7 @@
 				<div class="card-info">
 					<a class="title" href="#">{{chapter.name}}</a>
 					<div class="desc">
-						{{chapter.city}}, <span ng-show="chapter.state != undefined">{{chapter.state}},</span> {{chapter.country}}
+						{{chapter.city}}, <span ng-show="chapter.state != undefined">{{chapter.state}},</span> {{chapter.country.name}}
 					</div>
 				</div>
 				<div class="card-bottom">

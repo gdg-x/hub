@@ -16,10 +16,10 @@ angular.module('gdgxHubApp')
 	    		delete chapter.geo.lat;
     		}
 
-    		if(!chapters[chapter.country])
-    			chapters[chapter.country] = [];
+    		if(!chapters[chapter.country.name])
+    			chapters[chapter.country.name] = { code: chapter.country._id, chapters: [] };
 
-    		chapters[chapter.country].push(chapter);
+    		chapters[chapter.country.name].chapters.push(chapter);
     	}
     	$scope.chapters_flat = data;
     	$scope.chapters = chapters;
