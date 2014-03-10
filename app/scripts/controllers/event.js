@@ -19,7 +19,7 @@ angular.module('gdgxHubApp')
     };
 
     $scope.events = function (start, end, callback) {
-      $http.get("/api/v1/events/"+start.getTime()+"/"+end.getTime()+"?perpage=400").success(function(resp) {
+      $http.get("/api/v1/events/"+start.getTime()+"/"+end.getTime()+"?perpage=1000").success(function(resp) {
         var events = [];
         var data = resp.items;
 
