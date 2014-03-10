@@ -27,6 +27,7 @@ angular.module('gdgxHubApp')
   })
   .controller('ChapterCountryCtrl', function ($scope, $http, $routeParams) {
     $scope.country = $routeParams['country'];
+    $scope.country_zoom = 10;
     $http.get("/api/v1/chapters/country/"+$routeParams['country']+"?sort=name").success(function(resp) {
       
       var data = resp.items;
@@ -34,10 +35,13 @@ angular.module('gdgxHubApp')
         if(data[i].geo) {
           data[i].geo.latitude = data[i].geo.lat;
           data[i].geo.longitude = data[i].geo.lng;
+          data[i].geo.zoom = 10;
           delete data[i].geo.lng;
           delete data[i].geo.lat;
         }
       }
+
+      $scope.country_geo = { latitude: data[0].geo.latitude, longitude: data[0].geo.longitude };
 
       $scope.chapters = data;
     });
@@ -47,10 +51,14 @@ angular.module('gdgxHubApp')
       if(data.geo) {
         data.geo.latitude = data.geo.lat;
         data.geo.longitude = data.geo.lng;
+        data.geo.zoom = 10;
         delete data.geo.lng;
         delete data.geo.lat;
       }
-
+      $scope.map_center = {
+        latitude: data.geo.latitude,
+        longitude: data.geo.longitude
+      }
     	$scope.chapter = data;
     });
     $http.get("https://www.googleapis.com/plus/v1/people/"+$routeParams['chapterId']+"?fields=aboutMe&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg").success(function(data) {

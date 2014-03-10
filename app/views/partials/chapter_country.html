@@ -9,7 +9,7 @@
 			<div ng-switch on="!!chapters.0.geo">
 				<div class="card" ng-switch-when="true">
 					<div class="card-wh-body">
-						<google-map center="chapters.0.geo" zoom="4">
+						<google-map center="country_geo" zoom="country_zoom" id="map_country">
 							<marker ng-repeat="chapter in chapters" coords='chapter.geo'>
 							</marker>
 						</google-map>
@@ -23,7 +23,7 @@
 			<a ng-href="/chapters/{{chapter._id}}">
 			<div class="card people">
 				<div class="card-top green">
-					<google-map style="width: 170px; height:150px" class="card-map" center="chapter.geo" zoom="10" options="{disableDefaultUI: true, scrollwheel: false}">
+					<google-map style="width: 170px; height:150px" class="card-map" id="map_{{$index}}" center="chapter.geo" zoom="chapter.geo.zoom" options="{disableDefaultUI: true, scrollwheel: false}">
 						<marker coords='chapter.geo'></marker>
 					</google-map>
 				</div>

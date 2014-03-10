@@ -28,7 +28,7 @@
 			<div ng-switch on="!!chapter.geo">
 				<div class="card" ng-switch-when="true">
 					<div class="card-wh-body">
-						<google-map center="chapter.geo" zoom="10">
+						<google-map center="map_center" zoom="chapter.geo.zoom">
 							<marker coords='chapter.geo'>
 							</marker>
 						</google-map>
