@@ -61,8 +61,10 @@ angular.module('gdgxHubApp')
       }
     	$scope.chapter = data;
     });
-    $http.get("https://www.googleapis.com/plus/v1/people/"+$routeParams['chapterId']+"?fields=aboutMe&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg").success(function(data) {
+
+    $http.get("https://www.googleapis.com/plus/v1/people/"+$routeParams['chapterId']+"?fields=aboutMe,image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg").success(function(data) {
       $scope.about = data.aboutMe;
+      $scope.image = data.image.url.replace("sz=50","sz=70");
     });
 
     $scope.chapterCalendar = {};

@@ -9,7 +9,7 @@
                 <div class="pull-right" id="menu_btn" ng-click="toggleMenu()"><i class="fa fa-align-justify"></i></div>
                 <div ng-switch-when="true" class="pull-right">
                     <div class="signed_in">
-                        <span id="logged_in_email">{{user.email}}</span>&nbsp;&nbsp;<img ng-src="https://profiles.google.com/s2/u/0/photos/profile/{{user.userId}}?sz=32" class="img-circle">
+                        <span id="logged_in_email">{{user.email}}</span>&nbsp;&nbsp;<img ng-src="{{user.image}}" class="img-circle">
                     </div>
                 </div>
                 <div ng-switch-default class="pull-right">

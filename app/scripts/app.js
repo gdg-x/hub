@@ -99,16 +99,20 @@ angular.module('gdgxHubApp', [
       Utilities.decodeJwt(authResult['id_token'], function(claims) {
         if(authResult['status']['signed_in']) {
           $http.post('/signin', { code: authResult['code'] }).success(function(data) {
+
             if(data.user == claims.sub) {
+              $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=9MZ8QiVlgHqPrJQXU9I53EiW', { headers: { 'Authorization': "Bearer "+ authResult['access_token']} }).success(function(additional) {
               $rootScope.user = {
                 auth: authResult['status']['signed_in'],
                 authResult: authResult,
+                  image: additional.image.url.replace("sz=50","sz=32"),
                 email: claims['email'],
                 userId: claims['sub'],
                 chapters: data.chapters,
                 organizer: (data.chapters.length > 0)
               };
               $rootScope.$broadcast("authenticated");
+              });
             } else {
               alert("ID Missmatch");
             }
