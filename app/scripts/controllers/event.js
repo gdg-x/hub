@@ -49,6 +49,11 @@ angular.module('gdgxHubApp')
     	if(data.geo) {
 	    	data.geo.latitude = data.geo.lat;
 	    	data.geo.longitude = data.geo.lng;
+        data.geo.zoom = 11;
+        data.geo.center = {
+          latitude: data.geo.latitude,
+          longitude: data.geo.longitude
+        };
 	    	delete data.geo.lat;
 	    	delete data.geo.lng;
     	}

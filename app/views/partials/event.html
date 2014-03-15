@@ -25,7 +25,7 @@
 					<div class="card-wh-body">
 						<div ng-switch on="!!event.geo">
 							<div ng-switch-when="true">
-								<google-map center="event.geo" zoom="5">
+								<google-map center="event.geo.center" zoom="event.geo.zoom">
 									<marker coords='event.geo'>
 										
 									</marker>
