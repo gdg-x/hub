@@ -39,7 +39,7 @@
     "cacher-redis": "*",
     "phantomjs": "*",
     "node-phantom": "*",
-    "superagent-retry": "*"
+    "superagent-retry": "~0.1.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
