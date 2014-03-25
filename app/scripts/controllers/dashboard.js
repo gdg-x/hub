@@ -17,4 +17,21 @@ angular.module('gdgxHubApp')
   		if(newValue) $scope.fetchChapterEvents();
   	});
 
+  })
+  .controller('EventSeriesCtrl', function($scope, $http){
+  	
+  	$scope.addPermissions = function(tag, folderId){
+  		$http.get('/api/v1/events/tag/' + tag).success(function (eventData){
+  			angular.forEach(eventData.items, function(value, key){
+       		chapterCalls.push($http.get('/api/v1/chapter/' + value.chapter))
+       		  			});
+	      $q.all(chapterCalls).then(function(chapters){      	
+   	    	angular.forEach(chapters, function(value, key){
+      	 		angular.forEach(value.organizers, function(organizer, index){
+       					// call the drive api
+       			})
+       		})
+       	});     			      
+      });
+  	}  
   });
