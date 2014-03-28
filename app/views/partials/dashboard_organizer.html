@@ -23,7 +23,7 @@
 			<div class="card">
 				<div class="card-wh-body">
 					<div ng-repeat="chapter in user.chapters">
-						<a ng-href="/chapters/{{chapter.id}}">{{chapter.name}}</a>
+						<a ng-href="/chapters/{{chapter.id}}">{{chapter.name}}</a> - <a class="btn btn-primary" ng-href="/chapters/{{chapter.id}}/metrics"><i class="fa fa-bar-chart-o"></i> Metrics</a>
 					</div>
 				</div>
 			</div>

@@ -11,6 +11,7 @@ angular.module('gdgxHubApp', [
   'ui.bootstrap',
   'google-maps',
   'gdgxHubApp.directives.gplus',
+  'gdgxHubApp.directives.metrics',
   'gdgxHubApp.directives.d3',
   'directive.g+signin',
   'jmdobry.angular-cache'
@@ -40,6 +41,10 @@ angular.module('gdgxHubApp', [
       .when('/chapters/:chapterId', {
         templateUrl: 'partials/chapter',
         controller: 'ChapterDetailCtrl'
+      })
+      .when('/chapters/:chapterId/metrics', {
+        templateUrl: 'partials/chapter_metrics',
+        controller: 'ChapterMetricsCtrl'
       })
       .when('/events', {
         templateUrl: 'partials/events',
@@ -102,16 +107,16 @@ angular.module('gdgxHubApp', [
 
             if(data.user == claims.sub) {
               $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=9MZ8QiVlgHqPrJQXU9I53EiW', { headers: { 'Authorization': "Bearer "+ authResult['access_token']} }).success(function(additional) {
-              $rootScope.user = {
-                auth: authResult['status']['signed_in'],
-                authResult: authResult,
+                $rootScope.user = {
+                  auth: authResult['status']['signed_in'],
+                  authResult: authResult,
                   image: additional.image.url.replace("sz=50","sz=32"),
-                email: claims['email'],
-                userId: claims['sub'],
-                chapters: data.chapters,
-                organizer: (data.chapters.length > 0)
-              };
-              $rootScope.$broadcast("authenticated");
+                  email: claims['email'],
+                  userId: claims['sub'],
+                  chapters: data.chapters,
+                  organizer: (data.chapters.length > 0)
+                };
+                $rootScope.$broadcast("authenticated");
               });
             } else {
               alert("ID Missmatch");
