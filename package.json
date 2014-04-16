@@ -21,7 +21,7 @@
     "passport-localapikey": "*",
     "node-uuid": "*",
     "cron": "*",
-    "superagent": "~0.17.0",
+    "superagent": "~0.16.0",
     "moment": "*",
     "googleapis": "*",
     "cheerio": "*",
