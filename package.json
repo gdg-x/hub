@@ -21,7 +21,7 @@
     "passport-localapikey": "*",
     "node-uuid": "*",
     "cron": "*",
-    "superagent": "~0.15.4",
+    "superagent": "~0.17.0",
     "moment": "*",
     "googleapis": "*",
     "cheerio": "*",
@@ -31,7 +31,7 @@
     "google-oauth-jwt": "*",
     "timequeue": "*",
     "socket.io": "*",
-    "newrelic": "*",
+    "newrelic": "~1.5.0",
     "redis": "*",
     "node-forge": "*",
     "async": "*",
@@ -39,7 +39,7 @@
     "cacher-redis": "*",
     "phantomjs": "*",
     "node-phantom": "*",
-    "superagent-retry": "~0.1.1"
+    "superagent-retry": "~0.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

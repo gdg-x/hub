@@ -14,7 +14,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 // Application Config
 var config = require('./lib/config/config');
 
-var newrelic = require('newrelic');
+// Disable NewRelic for now.
+//var newrelic = require('newrelic');
 
 // Connect to database
 var db = mongoose.connect(config.mongo.uri, config.mongo.options);
