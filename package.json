@@ -21,11 +21,11 @@
     "passport-localapikey": "*",
     "node-uuid": "*",
     "cron": "*",
-    "superagent": "~0.16.0",
+    "superagent": "~0.17.0",
     "moment": "*",
     "googleapis": "*",
     "cheerio": "*",
-    "node-geocoder": "*",
+    "node-geocoder": "~2.2.0",
     "timequeue": "*",
     "burrito": "*",
     "google-oauth-jwt": "*",
@@ -39,7 +39,7 @@
     "cacher-redis": "*",
     "phantomjs": "*",
     "node-phantom": "*",
-    "superagent-retry": "~0.2.0"
+    "superagent-retry": "~0.3.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
