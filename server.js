@@ -50,6 +50,7 @@ if (cluster.isMaster) {
 	// Bootstrap models
 	var modelsPath = path.join(__dirname, 'lib/models');
 	fs.readdirSync(modelsPath).forEach(function (file) {
+	  console.log("Loading model..."+ file.replace(".js",""));
 	  require(modelsPath + '/' + file);
 	});
 
