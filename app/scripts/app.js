@@ -54,6 +54,10 @@ angular.module('gdgxHubApp', [
         templateUrl: 'partials/events',
         controller: 'EventCtrl'
       })
+      .when('/events/tags/:tag', {
+        templateUrl: 'partials/events',
+        controller: 'EventCtrl'
+      })
       .when('/events/:eventId', {
         templateUrl: 'partials/event',
         controller: 'EventDetailCtrl'
