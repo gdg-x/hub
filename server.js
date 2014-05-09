@@ -10,6 +10,17 @@ var express = require('express'),
 /**
  * Main application file
  */
+console.log2 = console.log;
+console.log = function(){
+	var args = Array.prototype.slice.call(arguments);
+
+	if(args.length > 1) {
+		args[0] = "["+process.pid+"] "+args[0];
+		this.log2.apply(this, args);
+	} else {
+		this.log2("["+process.pid+"] "+args[0]);
+	}
+};
 
 if (cluster.isMaster) {
 
@@ -30,7 +41,7 @@ if (cluster.isMaster) {
     var oldPID = deadWorker.process.pid;
 
     // Log the event
-    console.log('worker '+oldPID+' died.');
+    console.log('worker '+oldPID+' died. Code: '+ code + ", Signal: "+ signal);
     console.log('worker '+newPID+' born.');
   });
 
