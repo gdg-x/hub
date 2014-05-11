@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gdgxHubApp.directives.gplus', ['d3'])
+angular.module('gdgxHubApp.directives.gplus', [])
    .directive('gplusPerson', ['$http', function($http) {
       return {
             restrict: 'EA',

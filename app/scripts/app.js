@@ -6,6 +6,7 @@ angular.module('gdgxHubApp', [
   'ngSanitize',
   'ngRoute',
   'd3',
+  'moment-timezone',
   'googlechart',
   'ui.calendar',
   'ui.bootstrap',
@@ -13,6 +14,7 @@ angular.module('gdgxHubApp', [
   'gdgxHubApp.directives.gplus',
   'gdgxHubApp.directives.metrics',
   'gdgxHubApp.directives.d3',
+  'gdgxHubApp.directives.moment',
   'directive.g+signin',
   'jmdobry.angular-cache'
 ])
@@ -60,7 +62,12 @@ angular.module('gdgxHubApp', [
       })
       .when('/events/:eventId', {
         templateUrl: 'partials/event',
-        controller: 'EventDetailCtrl'
+        controller: 'EventDetailCtrl',
+        resolve: {
+          'timezone': function(MomentTimezone) {
+            return MomentTimezone.promise;
+          }
+        }
       })
       .when('/developers/api', {
         templateUrl: 'partials/api',

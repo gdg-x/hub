@@ -19,7 +19,7 @@ angular.module('gdgxHubApp')
     };
 
     $scope.events = function (start, end, callback) {
-      $http.get("/api/v1/events/"+start.getTime()+"/"+end.getTime()+"?perpage=1000").success(function(resp) {
+      $http.get("/api/v1/events/"+start.getTime()+"/"+end.getTime()+"?perpage=1000&fields=title,chapter,start,end,allDay").success(function(resp) {
         var events = [];
         var data = resp.items;
 
@@ -58,6 +58,10 @@ angular.module('gdgxHubApp')
 	    	delete data.geo.lng;
     	}
     	$scope.event = data;
+
+    $http.get("https://www.googleapis.com/plus/v1/people/"+$scope.event.chapter+"?fields=image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg").success(function(data) {
+      $scope.image = data.image.url.replace("sz=50","sz=70");
+    });
 
       $http.get("/api/v1/chapters/"+$scope.event.chapter).success(function(data, status, headers, config) {
         if(data.geo) {
