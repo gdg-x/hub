@@ -48,7 +48,7 @@
 
                         $scope.countries = {};
                         $scope.organizers = ['+JoshuaWoodward'];
-                        $timeout( function(){ gapi.person.go() }, 1);
+                        $timeout( function(){ gapi.person.go() }, 1000);
 
                         $http.
                             jsonp( api +'chapters?perpage=10000&callback=JSON_CALLBACK').
