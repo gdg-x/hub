@@ -47,7 +47,8 @@
                     app.controller('MainCtrl', function($scope, $http, $timeout, api){
 
                         $scope.countries = {};
-                        $scope.organizers = [];
+                        $scope.organizers = ['+JoshuaWoodward'];
+                        $timeout( function(){ gapi.person.go() }, 1);
 
                         $http.
                             jsonp( api +'chapters?perpage=10000&callback=JSON_CALLBACK').
