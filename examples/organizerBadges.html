@@ -47,7 +47,7 @@
                     app.controller('MainCtrl', function($scope, $http, $timeout, api){
 
                         $scope.countries = {};
-                        $scope.organizers = [{'id':114658228251375812131'}];
+                        $scope.organizers = [{'id':'114658228251375812131'}];
                         $timeout( function(){ gapi.person.go() }, 1000);
 
                         $http.
