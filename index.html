@@ -1,31 +1,16 @@
 <!doctype html>
         <html>
             <head>
-                <title>Organizer Circler</title>
+                <title>HUB Examples</title>
                 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
             </head>
-            <body ng-app="GDGOrganizerCircler">
+            <body>
 
-                <div ng-controller="MainCtrl" class="container">
-                    <section id="filters" class="row">
-                        <form role="form" class="form-inline">
-                            <select ng-options="country.name for (key,country) in countries" ng-change="fetchOrganizers()" ng-model="selected"></select>
-                        </form>
-                    </section>
-                    <section id="organizers" class="row">
-                         <ul class="list-unstyled">
-                             <li ng-repeat="organizer in organizers" class="col-xs-3" style="height: 300px">
-                                 <div
-                                         class="g-person"
-                                         data-href="https://plus.google.com/{{organizer.id}}"
-                                         data-showtagline="false"
-                                         data-showcoverphoto="false"
-                                         data-width="180"></div>
-                             </li>
-                         </ul>
-                    </section>
-                </div>
-
+                <div class="container">
+			<ul>
+				<li><a href="/examples/organizerBadges">Organizer Badges by Country</a></li>
+			</ul>
+		</div>
                 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
                 <script type="text/javascript">
                     window.___gcfg = {
@@ -38,43 +23,7 @@
                     })();
                 </script>
 
-                <script>
-                    var app = angular.module('GDGOrganizerCircler',[]);
-
-                    app.constant('api','https://hub.gdgx.io/api/v1/');
-
-                    app.controller('MainCtrl', function($scope, $http, $timeout, api){
-
-                        $scope.countries = {};
-                        $scope.organizers = [];
-
-                        $http.
-                            jsonp( api +'chapters?perpage=10000&callback=JSON_CALLBACK').
-                            success( function(response){
-
-                                angular.forEach(response.items, function(a){
-                                    $scope.countries[a.country._id] = a.country;
-                                });
-                            });
-
-                        $scope.fetchOrganizers = function(){
-                            $scope.organizers = [];
-
-                            $http.
-                                jsonp( api + 'chapters/country/' + $scope.selected._id + '?perpage=10000&callback=JSON_CALLBACK').
-                                success( function(response){
-
-                                        angular.forEach(response.items, function(a){
-                                            angular.forEach(a.organizers, function(b){
-                                                $scope.organizers.push({'id':b})
-                                            });
-                                        });
-                                        console.log($scope.organizers);
-                                        $timeout( function(){ gapi.person.go() }, 1);
-                                });
-                        }
-                    });
-                </script>
+                
             </body>
 
         </html>
