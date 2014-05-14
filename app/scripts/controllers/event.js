@@ -75,8 +75,10 @@ angular.module('gdgxHubApp')
   	});
   })
   .controller('EventsHeatmapCtrl', function ($scope, $http, $routeParams) {
+    $scope.year = parseInt($routeParams['year']);
+    $scope.month = parseInt($routeParams['month']);
     $scope.map = {
-      zoom: 3,
+      zoom: 2,
       ready: 0,
       control: {},
       center: {
@@ -86,7 +88,7 @@ angular.module('gdgxHubApp')
     };
 
     $scope.data = {}
-    $http.get("/api/v1/events/year/"+parseInt($routeParams['year'])+"/"+parseInt($routeParams['month'])+"?perpage=999").success(function(data, status, headers, config) {
+    $http.get("/api/v1/events/year/"+$scope.year+"/"+$scope.month+"?perpage=999").success(function(data, status, headers, config) {
       var heatData = {
         max: 4,
         data: []
