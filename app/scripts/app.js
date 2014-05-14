@@ -64,9 +64,9 @@ angular.module('gdgxHubApp', [
         templateUrl: 'partials/event',
         controller: 'EventDetailCtrl',
         resolve: {
-          'timezone': function(MomentTimezone) {
+          'MomentTimezone': ['MomentTimezone', function(MomentTimezone) {
             return MomentTimezone.promise;
-          }
+          }]
         }
       })
       .when('/developers/api', {

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('gdgxHubApp.directives.moment', ['moment-timezone'])
-   .directive('timeTimezone', ['$http', 'MomentTimezone', function($http, ta) {
+angular.module('gdgxHubApp.directives.moment', [])
+   .directive('timeTimezone', ['$http', function($http) {
       return {
             restrict: 'E',
             template: '{{formatDate}}',

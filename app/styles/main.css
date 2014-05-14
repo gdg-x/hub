@@ -10,6 +10,25 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.card_progress {
+  width: 100%;
+  height: 12px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  background: rgb(253,253,253);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: 1px solid #c9c9c9;
+}
+
+.card_progress div {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-image: url('../images/color_bar.png');
+  height: 100%;
+  width: 0px;
+}
+
 .event_cards {
   min-height: 165px;
 }
