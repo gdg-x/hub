@@ -147,6 +147,8 @@ angular.module('gdgxHubApp', [
 
     $rootScope.$on('event:google-plus-signin-failure', function (event,authResult) {
       // Auth failure or signout detected
+      console.log("Auth failed");
+      console.log(authResult["error"]);
       $rootScope.$apply(function() {
         $rootScope.user = {
           authResult: undefined,
