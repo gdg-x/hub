@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div ng-switch-default class="pull-right">
-                    <div ng-show="user.auth == false">
+                    <div ng-show="user.auth == false && user.authResult != undefined">
                         <google-plus-signin clientid="748656608659" data-callback="signinCallback" data-postmessage="postmessage"></google-plus-signin>
                     </div>
                 </div>

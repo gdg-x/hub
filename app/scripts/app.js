@@ -151,7 +151,7 @@ angular.module('gdgxHubApp', [
       console.log(authResult["error"]);
       $rootScope.$apply(function() {
         $rootScope.user = {
-          authResult: undefined,
+          authResult: authResult,
           auth: false,
         };
       });
