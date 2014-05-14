@@ -73,4 +73,55 @@ angular.module('gdgxHubApp')
         $scope.chapter = data;
       });
   	});
-  });
+  })
+  .controller('EventsHeatmapCtrl', function ($scope, $http, $routeParams) {
+    $scope.map = {
+      zoom: 3,
+      ready: 0,
+      control: {},
+      center: {
+        latitude: 19.988635,
+        longitude: -9.987259
+      }
+    };
+
+    $scope.data = {}
+    $http.get("/api/v1/events/year/"+parseInt($routeParams['year'])+"/"+parseInt($routeParams['month'])+"?perpage=999").success(function(data, status, headers, config) {
+      var heatData = {
+        max: 4,
+        data: []
+      };
+      for(var i = 0; i < data.items.length; i++) {
+        var item = data.items[i];
+
+        if(item.geo) {
+            heatData.data.push({
+              lat: item.geo.lat, lng: item.geo.lng, count: 1
+            });
+        }
+      }
+      $scope.heatData = heatData;
+      $scope.map.ready++;
+    });
+
+    $scope.$watch("map.control", function(newValue, oldValue) {
+      if(newValue)
+        $scope.map.ready++;
+    });
+
+    $scope.$watch("map.ready", function(newValue, oldValue) {
+      if(newValue > 1) {
+        $scope.gmap = $scope.map.control.getGMap();
+        var heatmap = new HeatmapOverlay($scope.map.control.getGMap(), {
+          "radius":20,
+          "visible":true, 
+          "opacity":60
+        });
+
+        google.maps.event.addListenerOnce($scope.map.control.getGMap(), "idle", function(){
+          // this is important, because if you set the data set too early, the latlng/pixel projection doesn't work
+          heatmap.setDataSet($scope.heatData);
+        });
+      }
+    });
+  })
