@@ -24,6 +24,7 @@
     "superagent": "~0.17.0",
     "moment": "*",
     "googleapis": "*",
+    "nodemailer": "*",
     "cheerio": "*",
     "node-geocoder": "~2.2.0",
     "timequeue": "*",
