@@ -50,13 +50,16 @@ if (cluster.isMaster) {
 	// Default node environment to development
 	process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+	// Application Config
+	var config = require('./lib/config/config');
+
 	process.on('uncaughtException', function(err) {
-	  if(config.mail) {
+	  if(config.mail && config.mail.error_recipient) {
 	  	console.log("Mailing error report.");
 	  	var transport = nodemailer.createTransport(config.mail.transport, {});
 	  	transport.sendMail({
 	  		from: config.mail.sender,
-	  		to: "maui@gdgac.org",
+	  		to: config.mail.error_recipient,
 	  		subject: "Worker "+ process.pid + " crashed",
 	  		generateTextFromHTML: true,
 	  		html: "One of the workers of the Hub just crashed. Please check this Stacktrace and take action if necessary:<br/><br/>" + JSON.stringify(err.stack).split("\\n").join("<br />")
@@ -75,8 +78,6 @@ if (cluster.isMaster) {
       }
 	});
 
-	// Application Config
-	var config = require('./lib/config/config');
 
 	// Disable NewRelic for now.
 	//var newrelic = require('newrelic');
