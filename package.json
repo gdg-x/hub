@@ -41,7 +41,7 @@
     "phantomjs": "*",
     "node-phantom": "*",
     "superagent-retry": "~0.3.0",
-    "slug": "*"
+    "slugify": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
