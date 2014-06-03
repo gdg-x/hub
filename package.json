@@ -40,7 +40,8 @@
     "cacher-redis": "*",
     "phantomjs": "*",
     "node-phantom": "*",
-    "superagent-retry": "~0.3.0"
+    "superagent-retry": "~0.3.0",
+    "slug": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
