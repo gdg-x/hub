@@ -31,7 +31,7 @@
     "burrito": "*",
     "google-oauth-jwt": "*",
     "timequeue": "*",
-    "socket.io": "*",
+    "socket.io": "0.9.x",
     "newrelic": "~1.5.0",
     "redis": "*",
     "node-forge": "*",
