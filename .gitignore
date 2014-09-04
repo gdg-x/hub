@@ -9,3 +9,5 @@ heroku
 dist
 .idea
 newrelic_agent.log
+.c9
+mongodb
