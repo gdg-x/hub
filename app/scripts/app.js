@@ -54,6 +54,10 @@ angular.module('gdgxHubApp', [
       .when('/events/devfest', {
         templateUrl: 'partials/devfest'
       })
+      .when('/events/map/:tag', {
+        templateUrl: 'partials/events_map',
+        controller: 'EventsMapCtrl'
+      })
       .when('/events/heatmap/:year/:month', {
         templateUrl: 'partials/events_heatmap',
         controller: 'EventsHeatmapCtrl'
