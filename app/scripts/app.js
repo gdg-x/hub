@@ -6,14 +6,16 @@ angular.module('gdgxHubApp', [
   'ngSanitize',
   'ngRoute',
   'd3',
+  'moment-timezone',
   'googlechart',
   'ui.calendar',
   'ui.bootstrap',
   'google-maps',
   'gdgxHubApp.directives.gplus',
+  'gdgxHubApp.directives.metrics',
   'gdgxHubApp.directives.d3',
-  'directive.g+signin',
-  'jmdobry.angular-cache'
+  'gdgxHubApp.directives.moment',
+  'directive.g+signin'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -41,13 +43,37 @@ angular.module('gdgxHubApp', [
         templateUrl: 'partials/chapter',
         controller: 'ChapterDetailCtrl'
       })
+      .when('/chapters/:chapterId/metrics', {
+        templateUrl: 'partials/chapter_metrics',
+        controller: 'ChapterMetricsCtrl'
+      })
       .when('/events', {
+        templateUrl: 'partials/events',
+        controller: 'EventCtrl'
+      })
+      .when('/events/devfest', {
+        templateUrl: 'partials/devfest'
+      })
+      .when('/events/heatmap/:year/:month', {
+        templateUrl: 'partials/events_heatmap',
+        controller: 'EventsHeatmapCtrl'
+      })
+      .when('/events/tags', {
+        templateUrl: 'partials/events',
+        controller: 'EventCtrl'
+      })
+      .when('/events/tags/:tag', {
         templateUrl: 'partials/events',
         controller: 'EventCtrl'
       })
       .when('/events/:eventId', {
         templateUrl: 'partials/event',
-        controller: 'EventDetailCtrl'
+        controller: 'EventDetailCtrl',
+        resolve: {
+          'MomentTimezone': ['MomentTimezone', function(MomentTimezone) {
+            return MomentTimezone.promise;
+          }]
+        }
       })
       .when('/developers/api', {
         templateUrl: 'partials/api',
@@ -102,16 +128,16 @@ angular.module('gdgxHubApp', [
 
             if(data.user == claims.sub) {
               $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=9MZ8QiVlgHqPrJQXU9I53EiW', { headers: { 'Authorization': "Bearer "+ authResult['access_token']} }).success(function(additional) {
-              $rootScope.user = {
-                auth: authResult['status']['signed_in'],
-                authResult: authResult,
+                $rootScope.user = {
+                  auth: authResult['status']['signed_in'],
+                  authResult: authResult,
                   image: additional.image.url.replace("sz=50","sz=32"),
-                email: claims['email'],
-                userId: claims['sub'],
-                chapters: data.chapters,
-                organizer: (data.chapters.length > 0)
-              };
-              $rootScope.$broadcast("authenticated");
+                  email: claims['email'],
+                  userId: claims['sub'],
+                  chapters: data.chapters,
+                  organizer: (data.chapters.length > 0)
+                };
+                $rootScope.$broadcast("authenticated");
               });
             } else {
               alert("ID Missmatch");
@@ -123,9 +149,11 @@ angular.module('gdgxHubApp', [
 
     $rootScope.$on('event:google-plus-signin-failure', function (event,authResult) {
       // Auth failure or signout detected
+      console.log("Auth failed");
+      console.log(authResult["error"]);
       $rootScope.$apply(function() {
         $rootScope.user = {
-          authResult: undefined,
+          authResult: authResult,
           auth: false,
         };
       });

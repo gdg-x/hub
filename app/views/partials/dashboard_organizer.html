@@ -3,18 +3,9 @@
 		<div class="span9">
 			<h2>Welcome Organizer!</h2>
 			<h3>Hi there. Glad to have you onboard.</h3>
-			<div class="row">
-				<div class="span9 card">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Username</th>
-							</tr>
-						</thead>
-					</table>
+			<div class="card">
+				<div class="card-wh-body">
+					Nothing yet. Watch this space.
 				</div>
 			</div>
 		</div>
@@ -23,7 +14,7 @@
 			<div class="card">
 				<div class="card-wh-body">
 					<div ng-repeat="chapter in user.chapters">
-						<a ng-href="/chapters/{{chapter.id}}">{{chapter.name}}</a>
+						<a ng-href="/chapters/{{chapter.id}}">{{chapter.name}}</a> <a class="btn btn-primary" ng-href="/chapters/{{chapter.id}}/metrics"><i class="fa fa-bar-chart-o"></i> Metrics</a>
 					</div>
 				</div>
 			</div>

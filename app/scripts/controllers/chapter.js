@@ -16,10 +16,12 @@ angular.module('gdgxHubApp')
 	    		delete chapter.geo.lat;
     		}
 
-    		if(!chapters[chapter.country.name])
-    			chapters[chapter.country.name] = { code: chapter.country._id, chapters: [] };
-
-    		chapters[chapter.country.name].chapters.push(chapter);
+        if(chapter.country) {
+      		if(!chapters[chapter.country.name])
+      			chapters[chapter.country.name] = { code: chapter.country._id, chapters: [] };
+  
+      		chapters[chapter.country.name].chapters.push(chapter);
+        }
     	}
     	$scope.chapters_flat = data;
     	$scope.chapters = chapters;
@@ -45,6 +47,37 @@ angular.module('gdgxHubApp')
 
       $scope.chapters = data;
     });
+  })
+  .controller('ChapterMetricsCtrl', function ($scope, $http, $routeParams) {
+
+    $scope.month = (moment().months()+1);
+    $scope.year = moment().year();
+    $scope.chapterId = $routeParams['chapterId'];
+
+    $http.get("/api/v1/chapters/"+$routeParams['chapterId']).success(function(data) {
+      if(data.geo) {
+        data.geo.latitude = data.geo.lat;
+        data.geo.longitude = data.geo.lng;
+        data.geo.zoom = 10;
+        delete data.geo.lng;
+        delete data.geo.lat;
+      }
+      $scope.map_center = {
+        latitude: data.geo.latitude,
+        longitude: data.geo.longitude
+      }
+      $scope.chapter = data;
+    });
+
+    $http.get("https://www.googleapis.com/plus/v1/people/"+$routeParams['chapterId']+"?fields=aboutMe,image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg").success(function(data) {
+      $scope.about = data.aboutMe;
+      $scope.image = data.image.url.replace("sz=50","sz=70");
+    });
+
+    /*
+    $http.get("/api/v1/chapters/"+$routeParams['chapterId']+"/metrics/daily/circledByCount/"+moment().year()+"/"+).success(function(data) { 
+      $scope.chapter = data;
+    });*/
   })
   .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location) {
     $http.get("/api/v1/chapters/"+$routeParams['chapterId']).success(function(data) {

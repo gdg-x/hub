@@ -3,9 +3,12 @@
 		<div class="span1">
 			<img ng-show="chapter._id != undefined" class="pull-right" style="margin-top: 11px;" ng-src="{{image}}"/>
 		</div>
-		<div style="margin-left: 10px" class="span11">
+		<div style="margin-left: 10px" class="span9">
 			<h3>{{chapter.name}}</h3>
 			<span>{{chapter.city}}, {{chapter.country.name}}</span>
+		</div>
+		<div class="span2" style="text-align: right; padding-top: 20px;">
+			<a class="btn btn-primary" ng-href="/chapters/{{chapter._id}}/metrics"><i class="fa fa-bar-chart-o"></i> Metrics</a>
 		</div>
 	</div>
 	<div class="row">
