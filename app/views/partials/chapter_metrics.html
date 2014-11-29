@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+  	<div class="span1">
+		<a href="https://plus.google.com/{{chapter._id}}" target="_blank">
+			<img ng-show="chapter._id != undefined" class="pull-right" style="margin-top: 11px;" ng-src="{{image}}"/>
+		</a>
+	</div>
+	<div style="margin-left: 10px" class="span3">
+		<a ng-href="/chapters/{{chapter._id}}"><h3>{{chapter.name}}</h3></a>
+		<span>{{chapter.city}}, <a ng-href="/chapters/country/{{chapter.country._id}}">{{chapter.country.name}}</a></span>
+	</div>
+	<div class="span8 pull-right" style="text-align: right">
+		<h2>Metrics for {{year}}/{{month}}</h2>
+	</div>
+  </div>
+  <div class="row">
+  	<div class="span12">
+  		<h3 class="card-outheader">Circled By</h3>
+		<div class="card metric">
+			<div class="card-wh-body">
+				<div daily-metric metric="'circledByCount'" subject-name="chapter.name" subject="chapterId" month="month" year="year"></div>
+			</div>
+		</div>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="span12">
+  		<h3 class="card-outheader">+1</h3>
+		<div class="card metric">
+			<div class="card-wh-body">
+				<div daily-metric metric="'plusOneCount'" subject-name="chapter.name" subject="chapterId" month="month" year="year"/></div>
+			</div>
+		</div>
+  	</div>
+  </div>
+  <div class="row">
+  	
+  </div>
+</div>
