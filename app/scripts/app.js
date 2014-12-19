@@ -121,6 +121,7 @@ angular.module('gdgxHubApp', [
 
     $rootScope.$on('$routeChangeSuccess', function(event) {
       if ($location.path().indexOf('/tags/') >= 0 && $rootScope.user.userId != '+SebastianMauer'){
+        event.preventDefault();
         $location.path('/login');
       }
 
