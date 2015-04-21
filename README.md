@@ -39,3 +39,7 @@ grunt serve
 grunt build
 ```
 The distributable version will be placed in /dist
+
+## History (just for the fun of it)
+
+https://docs.google.com/document/d/1X8fuwTvA4Y2Hm_PmP8gE_VH6kNd6lYGXjbOfoNUapcM/edit?usp=sharing&authkey=CMiRgOYF
