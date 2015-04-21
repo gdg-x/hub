@@ -50,8 +50,8 @@
               <tr ng-repeat="event in nextEvents">
                 <td><img width="32" ng-src="https://developers.google.com/{{event.iconUrl}}"></td>
                 <td><a ng-href="/events/{{event._id}}"/>{{event.title}}</a></td>
-                <td>{{event.start}}</td>
-                <td>{{event.end}}</td>
+                <td>{{event.start | date}}</td>
+                <td>{{event.end | date}}</td>
               </tr>
             </tbody>
           </table>

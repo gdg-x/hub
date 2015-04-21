@@ -75,6 +75,10 @@ angular.module('gdgxHubApp', [
           }]
         }
       })
+      .when('/tags/:tag/edit', {
+              templateUrl: 'partials/tag_edit',
+              controller: 'TagManagementCtrl'
+      })
       .when('/developers/api', {
         templateUrl: 'partials/api',
         controller: 'ApiCtrl'
@@ -116,6 +120,11 @@ angular.module('gdgxHubApp', [
     }
 
     $rootScope.$on('$routeChangeSuccess', function(event) {
+      if ($location.path().indexOf('/tags/') >= 0 && $rootScope.user.userId != '+SebastianMauer'){
+        event.preventDefault();
+        $location.path('/login');
+      }
+
       ga('send', 'pageview', {'page': $location.path()});
     });
 

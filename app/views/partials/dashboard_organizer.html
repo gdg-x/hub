@@ -18,6 +18,22 @@
 					</div>
 				</div>
 			</div>
+			<h3>Event series</h3>
+			<div class="card">
+				<div class="card-wh-body" ng-controller="EventSeriesCtrl">
+				   <form name="form" class="css-form" novalidate>
+  						<div>
+    						Tag for series
+    						<input type="text" ng-model="tag" name="tag"/>    							
+  						</div>
+  						<div>
+    						Folder id to share with organizers
+    						<input type="text" ng-model="folderId" name="folderId"/>    							
+  						</div>
+  						<button ng-click="addPermissions(tag, folderId)">Add permissions</button>
+ 					</form>					
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
