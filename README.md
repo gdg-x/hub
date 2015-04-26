@@ -1,6 +1,8 @@
 GDG[x] Hub
 ===
 
+[![Join the chat at https://gitter.im/gdg-x/hub](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gdg-x/hub?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/gdg-x/hub.png?branch=master)](https://travis-ci.org/gdg-x/hub)
 
 The public instance of the GDG[x] Hub is hosted at [https://hub.gdgx.io]
@@ -37,3 +39,7 @@ grunt serve
 grunt build
 ```
 The distributable version will be placed in /dist
+
+## History (just for the fun of it)
+
+https://docs.google.com/document/d/1X8fuwTvA4Y2Hm_PmP8gE_VH6kNd6lYGXjbOfoNUapcM/edit?usp=sharing&authkey=CMiRgOYF
