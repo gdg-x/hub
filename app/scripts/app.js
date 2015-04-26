@@ -86,7 +86,7 @@ angular.module('gdgxHubApp', [
       .otherwise({
         redirectTo: '/'
       });
-      
+
     $locationProvider.html5Mode(true);
   })
   .run(function ($rootScope, $location, $http, $window, Utilities) {
@@ -96,14 +96,14 @@ angular.module('gdgxHubApp', [
         };
 
     $rootScope.toggleMenu = function() {
-      if($rootScope.menu_toggle) {
-        $rootScope.menu_toggle = "";
+      if($rootScope.menuToggle) {
+        $rootScope.menuToggle = '';
       } else {
-        $rootScope.menu_toggle = "navbar_open";
+        $rootScope.menuToggle = 'navbar_open';
       }
-    }
+    };
 
-    $rootScope.supportsGeo = $window.navigator.geolocation != undefined;
+    $rootScope.supportsGeo = $window.navigator.geolocation !== undefined;
 
     if($rootScope.supportsGeo) {
       $window.navigator.geolocation.getCurrentPosition(function(position) {
@@ -115,32 +115,33 @@ angular.module('gdgxHubApp', [
       });
     }
 
-    $rootScope.$on('$routeChangeSuccess', function(event) {
+    $rootScope.$on('$routeChangeSuccess', function() {
       ga('send', 'pageview', {'page': $location.path()});
     });
 
-    $rootScope.$on('event:google-plus-signin-success', function (event,authResult) {
+    $rootScope.$on('event:google-plus-signin-success', function (event, authResult) {
       // Send login to server or save into cookie   $rootScope.$apply(function() {
 
-      Utilities.decodeJwt(authResult['id_token'], function(claims) {
-        if(authResult['status']['signed_in']) {
-          $http.post('/signin', { code: authResult['code'] }).success(function(data) {
+      Utilities.decodeJwt(authResult.id_token, function(claims) {
+        if(authResult.status.signed_in) {
+          $http.post('/signin', { code: authResult.code }).success(function(data) {
 
-            if(data.user == claims.sub) {
-              $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=9MZ8QiVlgHqPrJQXU9I53EiW', { headers: { 'Authorization': "Bearer "+ authResult['access_token']} }).success(function(additional) {
+            if(data.user === claims.sub) {
+              $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=9MZ8QiVlgHqPrJQXU9I53EiW', {
+                headers: { 'Authorization': 'Bearer '+ authResult.access_token} }).success(function(additional) {
                 $rootScope.user = {
-                  auth: authResult['status']['signed_in'],
+                  auth: authResult.status.signed_in,
                   authResult: authResult,
-                  image: additional.image.url.replace("sz=50","sz=32"),
-                  email: claims['email'],
-                  userId: claims['sub'],
+                  image: additional.image.url.replace('sz=50','sz=32'),
+                  email: claims.email,
+                  userId: claims.sub,
                   chapters: data.chapters,
                   organizer: (data.chapters.length > 0)
                 };
-                $rootScope.$broadcast("authenticated");
+                $rootScope.$broadcast('authenticated');
               });
             } else {
-              alert("ID Missmatch");
+              $window.alert('ID Missmatch');
             }
           });
         }
@@ -149,12 +150,12 @@ angular.module('gdgxHubApp', [
 
     $rootScope.$on('event:google-plus-signin-failure', function (event,authResult) {
       // Auth failure or signout detected
-      console.log("Auth failed");
-      console.log(authResult["error"]);
+      console.log('Auth failed');
+      console.log(authResult.error);
       $rootScope.$apply(function() {
         $rootScope.user = {
           authResult: authResult,
-          auth: false,
+          auth: false
         };
       });
     });
