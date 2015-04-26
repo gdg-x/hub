@@ -4,7 +4,6 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs'),
     cluster = require('cluster'),
-    http = require('http'),
     numCPUs = require('os').cpus().length,
     mongoose = require('mongoose');
 /**
@@ -15,10 +14,10 @@ console.log = function() {
     var args = Array.prototype.slice.call(arguments);
 
     if (args.length > 1) {
-        args[0] = "[" + process.pid + "] " + args[0];
+        args[0] = '[' + process.pid + '] ' + args[0];
         this.log2.apply(this, args);
     } else {
-        this.log2("[" + process.pid + "] " + args[0]);
+        this.log2('[' + process.pid + '] ' + args[0]);
     }
 };
 
@@ -29,7 +28,7 @@ if (cluster.isMaster) {
         setTimeout(function() {
             var worker = cluster.fork();
             console.log('worker started, PID ' + worker.process.pid);
-        }, (i + 1) * 5000);
+        }, (i + 1) * 5000); // jshint ignore:line
     }
 
     cluster.on('exit', function(deadWorker, code, signal) {
@@ -41,7 +40,7 @@ if (cluster.isMaster) {
         var oldPID = deadWorker.process.pid;
 
         // Log the event
-        console.log('worker ' + oldPID + ' died. Code: ' + code + ", Signal: " + signal);
+        console.log('worker ' + oldPID + ' died. Code: ' + code + ', Signal: ' + signal);
         console.log('worker ' + newPID + ' born.');
     });
 
@@ -56,12 +55,12 @@ if (cluster.isMaster) {
     //var newrelic = require('newrelic');
 
     // Connect to database
-    var db = mongoose.connect(config.mongo.uri, config.mongo.options);
+    var db = mongoose.connect(config.mongo.uri, config.mongo.options); // jshint ignore:line
 
     // Bootstrap models
     var modelsPath = path.join(__dirname, 'lib/models');
     fs.readdirSync(modelsPath).forEach(function(file) {
-        console.log("Loading model..." + file.replace(".js", ""));
+        console.log('Loading model...' + file.replace('.js', ''));
         require(modelsPath + '/' + file);
     });
 
@@ -72,10 +71,10 @@ if (cluster.isMaster) {
     // Passport Configuration
     require('./lib/config/passport')();
 
-    if (config.env == 'production') {
-        var myId = process.env.OPENSHIFT_GEAR_UUID + "";
+    if (config.env === 'production') {
+        var myId = process.env.OPENSHIFT_GEAR_UUID + '';
         if (cluster.isWorker) {
-            myId = process.env.OPENSHIFT_GEAR_UUID + "-" + cluster.worker.process.pid;
+            myId = process.env.OPENSHIFT_GEAR_UUID + '-' + cluster.worker.process.pid;
         }
         risky.connect({
             port: config.redis.port,
