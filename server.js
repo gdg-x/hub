@@ -1,106 +1,109 @@
 'use strict';
 
 var express = require('express'),
-    path = require('path'),
-    fs = require('fs'),
-    cluster = require('cluster'),
-    numCPUs = require('os').cpus().length,
-    mongoose = require('mongoose');
+  path = require('path'),
+  fs = require('fs'),
+  cluster = require('cluster'),
+  numCPUs = require('os').cpus().length,
+  mongoose = require('mongoose');
 /**
  * Main application file
  */
 console.log2 = console.log;
-console.log = function() {
-    var args = Array.prototype.slice.call(arguments);
+console.log = function () {
+  var args = Array.prototype.slice.call(arguments);
 
-    if (args.length > 1) {
-        args[0] = '[' + process.pid + '] ' + args[0];
-        this.log2.apply(this, args);
-    } else {
-        this.log2('[' + process.pid + '] ' + args[0]);
-    }
+  if (args.length > 1) {
+    args[0] = '[' + process.pid + '] ' + args[0];
+    this.log2.apply(this, args);
+  } else {
+    this.log2('[' + process.pid + '] ' + args[0]);
+  }
 };
 
 if (cluster.isMaster) {
 
-    // Fork workers.
-    for (var i = 0; i < numCPUs; i++) {
-        setTimeout(function() {
-            var worker = cluster.fork();
-            console.log('worker started, PID ' + worker.process.pid);
-        }, (i + 1) * 5000); // jshint ignore:line
-    }
+  // Fork workers.
+  for (var i = 0; i < numCPUs; i++) {
+    setTimeout(function () {
+      var worker = cluster.fork();
+      console.log('worker started, PID ' + worker.process.pid);
+    }, (i + 1) * 5000); // jshint ignore:line
+  }
 
-    cluster.on('exit', function(deadWorker, code, signal) {
-        // Restart the worker
-        var worker = cluster.fork();
+  cluster.on('exit', function (deadWorker, code, signal) {
+    // Restart the worker
+    var worker = cluster.fork();
 
-        // Note the process IDs
-        var newPID = worker.process.pid;
-        var oldPID = deadWorker.process.pid;
+    // Note the process IDs
+    var newPID = worker.process.pid;
+    var oldPID = deadWorker.process.pid;
 
-        // Log the event
-        console.log('worker ' + oldPID + ' died. Code: ' + code + ', Signal: ' + signal);
-        console.log('worker ' + newPID + ' born.');
-    });
+    // Log the event
+    console.log('worker ' + oldPID + ' died. Code: ' + code + ', Signal: ' + signal);
+    console.log('worker ' + newPID + ' born.');
+  });
 
 } else {
-    // Default node environment to development
-    process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+  // Default node environment to development
+  process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-    // Application Config
-    var config = require('./lib/config/config');
+  // Application Config
+  var config = require('./lib/config/config');
 
-    // Disable NewRelic for now.
-    //var newrelic = require('newrelic');
+  // Disable NewRelic for now.
+  //var newrelic = require('newrelic');
 
-    // Connect to database
-    var db = mongoose.connect(config.mongo.uri, config.mongo.options); // jshint ignore:line
+  // Connect to database
+  var db = mongoose.connect(config.mongo.uri, config.mongo.options); // jshint ignore:line
 
-    // Bootstrap models
-    var modelsPath = path.join(__dirname, 'lib/models');
-    fs.readdirSync(modelsPath).forEach(function(file) {
-        console.log('Loading model...' + file.replace('.js', ''));
-        require(modelsPath + '/' + file);
-    });
+  // Bootstrap models
+  var modelsPath = path.join(__dirname, 'lib/models');
+  fs.readdirSync(modelsPath).forEach(function (file) {
+    console.log('Loading model...' + file.replace('.js', ''));
+    require(modelsPath + '/' + file);
+  });
 
-    require('./lib/fixtures')();
+  require('./lib/fixtures')();
 
-    var risky = require('./lib/risky');
+  var risky = require('./lib/risky');
 
-    // Passport Configuration
-    require('./lib/config/passport')();
+  // Passport Configuration
+  require('./lib/config/passport')();
 
-    if (config.env === 'production') {
-        var myId = process.env.OPENSHIFT_GEAR_UUID + '';
-        if (cluster.isWorker) {
-            myId = process.env.OPENSHIFT_GEAR_UUID + '-' + cluster.worker.process.pid;
-        }
-        risky.connect({
-            port: config.redis.port,
-            host: config.redis.host,
-            auth: config.redis.password,
-            id: myId,
-            scope: 'risky'
-        });
+  if (config.env === 'production') {
+    var myId = process.env.OPENSHIFT_GEAR_UUID + '';
+    if (cluster.isWorker) {
+      myId = process.env.OPENSHIFT_GEAR_UUID + '-' + cluster.worker.process.pid;
     }
-    require('./lib/tasks')();
-
-    var app = express();
-
-    // Express settings
-    require('./lib/config/express')(app);
-
-    // Routing
-    require('./lib/routes')(app);
-
-    require('./lib/cron')();
-
-    // Start server
-    app.listen(config.port, config.hostname, function() {
-        console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+    risky.connect({
+      port: config.redis.port,
+      host: config.redis.host,
+      auth: config.redis.password,
+      id: myId,
+      scope: 'risky'
     });
+  }
 
-    // Expose app
-    exports = module.exports = app;
+  // Initialize admin task handlers
+  require('./lib/tasks')();
+
+  var app = express();
+
+  // Express settings
+  require('./lib/config/express')(app);
+
+  // Routing
+  require('./lib/routes')(app);
+
+  // Initialize cron jobs
+  require('./lib/cron')();
+
+  // Start server
+  app.listen(config.port, config.hostname, function () {
+    console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+  });
+
+  // Expose app
+  exports = module.exports = app;
 }
