@@ -11,6 +11,7 @@
   "undef": true,
   "smarttabs": true,
   "globals": {
-    "next": false
+    "next": false,
+    "document": false
   }
 }
