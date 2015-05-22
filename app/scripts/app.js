@@ -70,7 +70,7 @@ angular.module('gdgxHubApp', [
         templateUrl: 'partials/event',
         controller: 'EventDetailCtrl',
         resolve: {
-          'MomentTimezone': ['MomentTimezone', function(MomentTimezone) {
+          'MomentTimezone': ['MomentTimezone', function (MomentTimezone) {
             return MomentTimezone.promise;
           }]
         }
@@ -91,12 +91,12 @@ angular.module('gdgxHubApp', [
   })
   .run(function ($rootScope, $location, $http, $window, Utilities) {
     $rootScope.user = {
-          authResult: undefined,
-          auth: false,
-        };
+      authResult: undefined,
+      auth: false
+    };
 
-    $rootScope.toggleMenu = function() {
-      if($rootScope.menuToggle) {
+    $rootScope.toggleMenu = function () {
+      if ($rootScope.menuToggle) {
         $rootScope.menuToggle = '';
       } else {
         $rootScope.menuToggle = 'navbar_open';
@@ -105,34 +105,35 @@ angular.module('gdgxHubApp', [
 
     $rootScope.supportsGeo = $window.navigator.geolocation !== undefined;
 
-    if($rootScope.supportsGeo) {
-      $window.navigator.geolocation.getCurrentPosition(function(position) {
-          $rootScope.$apply(function() {
-              $rootScope.position = position;
-          });
-      }, function(error) {
-          console.log(error);
+    if ($rootScope.supportsGeo) {
+      $window.navigator.geolocation.getCurrentPosition(function (position) {
+        $rootScope.$apply(function () {
+          $rootScope.position = position;
+        });
+      }, function (error) {
+        console.log(error);
       });
     }
 
-    $rootScope.$on('$routeChangeSuccess', function() {
+    $rootScope.$on('$routeChangeSuccess', function () {
       ga('send', 'pageview', {'page': $location.path()});
     });
 
     $rootScope.$on('event:google-plus-signin-success', function (event, authResult) {
       // Send login to server or save into cookie   $rootScope.$apply(function() {
 
-      Utilities.decodeJwt(authResult.id_token, function(claims) {
-        if(authResult.status.signed_in) {
-          $http.post('/signin', { code: authResult.code }).success(function(data) {
+      Utilities.decodeJwt(authResult.id_token, function (claims) { // jshint ignore:line
+        if (authResult.status.signed_in) { // jshint ignore:line
+          $http.post('/signin', {code: authResult.code}).success(function (data) {
 
-            if(data.user === claims.sub) {
+            if (data.user === claims.sub) {
               $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=9MZ8QiVlgHqPrJQXU9I53EiW', {
-                headers: { 'Authorization': 'Bearer '+ authResult.access_token} }).success(function(additional) {
+                headers: {'Authorization': 'Bearer ' + authResult.access_token} // jshint ignore:line
+              }).success(function (additional) { // jshint ignore:line
                 $rootScope.user = {
-                  auth: authResult.status.signed_in,
+                  auth: authResult.status.signed_in, // jshint ignore:line
                   authResult: authResult,
-                  image: additional.image.url.replace('sz=50','sz=32'),
+                  image: additional.image.url.replace('sz=50', 'sz=32'),
                   email: claims.email,
                   userId: claims.sub,
                   chapters: data.chapters,
@@ -148,11 +149,11 @@ angular.module('gdgxHubApp', [
       });
     });
 
-    $rootScope.$on('event:google-plus-signin-failure', function (event,authResult) {
+    $rootScope.$on('event:google-plus-signin-failure', function (event, authResult) {
       // Auth failure or signout detected
       console.log('Auth failed');
       console.log(authResult.error);
-      $rootScope.$apply(function() {
+      $rootScope.$apply(function () {
         $rootScope.user = {
           authResult: authResult,
           auth: false
