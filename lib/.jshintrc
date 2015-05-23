@@ -9,5 +9,9 @@
   "noarg": true,
   "regexp": true,
   "undef": true,
-  "smarttabs": true
+  "smarttabs": true,
+  "globals": {
+    "next": false,
+    "document": false
+  }
 }

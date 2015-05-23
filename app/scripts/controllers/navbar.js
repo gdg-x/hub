@@ -23,11 +23,11 @@ angular.module('gdgxHubApp')
       'link': '/developers/api'
     }];
 
-    $scope.authed_menu = [{
+    $scope.authed_menu = [{ // jshint ignore:line
       'title': 'Dashboard',
       'link': '/dashboard'
     }];
-    
+
     $scope.isActive = function(route) {
       return route === $location.path();
     };

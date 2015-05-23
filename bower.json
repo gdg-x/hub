@@ -1,6 +1,6 @@
 {
   "name": "gdgx-hub",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "dependencies": {
     "angular": "1.2.9",
     "json3": "~3.2.6",
@@ -25,6 +25,7 @@
     "angular-scenario": "1.2.9"
   },
   "resolutions": {
-    "jquery": "2.1.0"
+    "jquery": "2.1.0",
+    "angular": "1.2.9"
   }
 }
