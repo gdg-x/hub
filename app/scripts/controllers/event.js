@@ -19,7 +19,7 @@ angular.module('gdgxHubApp')
     };
 
     $scope.events = function (start, end, callback) {
-      $http.get('/api/v1/events/' + start.getTime() + '/' + end.getTime() +
+      $http.get('/api/v1/events/' + start.unix() + '/' + end.unix() +
       '?perpage=1000&fields=title,chapter,start,end,allDay')
         .success(function (resp) {
           var events = [];
@@ -35,7 +35,9 @@ angular.module('gdgxHubApp')
             });
           }
 
-          callback(events);
+          if (callback) {
+            callback(events);
+          }
         });
     };
 
