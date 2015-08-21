@@ -18,8 +18,8 @@ angular.module('gdgxHubApp')
       eventClick: $scope.alertOnEventClick
     };
 
-    $scope.events = function (start, end, callback) {
-      $http.get('/api/v1/events/' + start.unix() + '/' + end.unix() +
+    $scope.events = function (start, end, timezone, callback) {
+      $http.get('/api/v1/events/' + start.toDate().getTime() + '/' + end.toDate().getTime() +
       '?perpage=1000&fields=title,chapter,start,end,allDay')
         .success(function (resp) {
           var events = [];
