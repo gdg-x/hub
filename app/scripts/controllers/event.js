@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gdgxHubApp')
-  .controller('EventCtrl', function ($scope, $http, $routeParams, $location) {
+  .controller('EventCtrl', function ($scope, $http, $routeParams, $location, uiCalendarConfig) {
 
     $scope.alertOnEventClick = function (event) {
       $location.path('/events/' + event.id);
@@ -40,7 +40,7 @@ angular.module('gdgxHubApp')
     };
 
     $scope.changeCalendarView = function (view, calendar) {
-      calendar.fullCalendar('changeView', view);
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
 
     $scope.eventSource = [$scope.events];
