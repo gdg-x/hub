@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('gdgxHubApp')
-  .controller('EventCtrl', function ($scope, $http, $routeParams, $location) {
+  .controller('EventCtrl', function ($scope, $http, $routeParams, $location, uiCalendarConfig) {
 
     $scope.alertOnEventClick = function (event) {
-      $scope.$apply(function () {
-        $location.path('/events/' + event.id);
-      });
+      $location.path('/events/' + event.id);
     };
 
     $scope.allCalendarConfig = {
@@ -18,8 +16,8 @@ angular.module('gdgxHubApp')
       eventClick: $scope.alertOnEventClick
     };
 
-    $scope.events = function (start, end, callback) {
-      $http.get('/api/v1/events/' + start.unix() + '/' + end.unix() +
+    $scope.events = function (start, end, timezone, callback) {
+      $http.get('/api/v1/events/' + start.toDate().getTime() + '/' + end.toDate().getTime() +
       '?perpage=1000&fields=title,chapter,start,end,allDay')
         .success(function (resp) {
           var events = [];
@@ -42,7 +40,7 @@ angular.module('gdgxHubApp')
     };
 
     $scope.changeCalendarView = function (view, calendar) {
-      calendar.fullCalendar('changeView', view);
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
 
     $scope.eventSource = [$scope.events];
