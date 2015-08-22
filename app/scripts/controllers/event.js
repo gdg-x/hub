@@ -4,9 +4,7 @@ angular.module('gdgxHubApp')
   .controller('EventCtrl', function ($scope, $http, $routeParams, $location) {
 
     $scope.alertOnEventClick = function (event) {
-      $scope.$apply(function () {
-        $location.path('/events/' + event.id);
-      });
+      $location.path('/events/' + event.id);
     };
 
     $scope.allCalendarConfig = {
