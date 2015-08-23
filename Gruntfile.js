@@ -1,4 +1,3 @@
-// Generated on 2014-02-03 using generator-angular-fullstack 1.2.5
 'use strict';
 
 // # Globbing
@@ -6,7 +5,6 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
-
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -37,7 +35,7 @@ module.exports = function (grunt) {
       prod: {
         options: {
           script: 'dist/server.js',
-          node_env: 'production'
+          node_env: 'production' // jshint ignore:line
         }
       }
     },
@@ -123,16 +121,6 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/views/*',
             '<%= yeoman.dist %>/public/*',
             '!<%= yeoman.dist %>/public/.git*'
-          ]
-        }]
-      },
-      heroku: {
-        files: [{
-          dot: true,
-          src: [
-            'heroku/*',
-            '!heroku/.git*',
-            '!heroku/Procfile'
           ]
         }]
       },
@@ -373,11 +361,6 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', function () {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve']);
-  });
-
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
@@ -400,11 +383,6 @@ module.exports = function (grunt) {
     'rev',
     'usemin'
   ]);
-
-  grunt.registerTask('heroku', function () {
-    grunt.log.warn('The `heroku` task has been deprecated. Use `grunt build` to build for deployment.');
-    grunt.task.run(['build']);
-  });
 
   grunt.registerTask('default', [
     'newer:jshint',
