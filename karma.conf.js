@@ -24,13 +24,14 @@ module.exports = function(config) {
       'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
       'app/bower_components/jquery-ui/ui/jquery-ui.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'app/bower_components/fullcalendar/fullcalendar.js',
+      'app/bower_components/moment/moment.js',
+      'app/bower_components/fullcalendar/dist/fullcalendar.js',
       'app/bower_components/angular-ui-calendar/src/calendar.js',
       'app/bower_components/angular-cache/dist/angular-cache.min.js',
       'app/bower_components/angular-google-chart/ng-google-chart.js',
+      'app/scripts/hub.module.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 
