@@ -100,6 +100,7 @@
   "scripts": {
     "start": "grunt serve",
     "startProd": "grunt serve:dist",
+    "configProd": "sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000;export PORT=3000;",
     "test": "grunt test"
   },
   "licenses": [
