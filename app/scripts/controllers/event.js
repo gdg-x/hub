@@ -45,7 +45,7 @@ angular.module('gdgxHubApp')
 
     $scope.eventSource = [$scope.events];
   })
-  .controller('EventDetailCtrl', function ($scope, $http, $routeParams) {
+  .controller('EventDetailCtrl', function ($scope, $http, $routeParams, config) {
 
     $http.get('/api/v1/events/' + $routeParams.eventId).success(function (data) {
       if (data.geo) {
@@ -62,7 +62,7 @@ angular.module('gdgxHubApp')
       $scope.event = data;
 
       $http.get('https://www.googleapis.com/plus/v1/people/' + $scope.event.chapter +
-      '?fields=image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg')
+      '?fields=image&key=' + config.GOOGLE_API_KEY)
         .success(function (data) {
           $scope.image = data.image.url.replace('sz=50', 'sz=70');
         });

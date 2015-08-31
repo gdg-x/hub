@@ -49,7 +49,7 @@ angular.module('gdgxHubApp')
         $scope.chapters = data;
       });
   })
-  .controller('ChapterMetricsCtrl', function ($scope, $http, $routeParams) {
+  .controller('ChapterMetricsCtrl', function ($scope, $http, $routeParams, config) {
 
     $scope.month = (moment().months() + 1);
     $scope.year = moment().year();
@@ -71,13 +71,13 @@ angular.module('gdgxHubApp')
     });
 
     $http.get('https://www.googleapis.com/plus/v1/people/' + $routeParams.chapterId +
-    '?fields=aboutMe,image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg')
+    '?fields=aboutMe,image&key=' + config.GOOGLE_API_KEY)
       .success(function (data) {
         $scope.about = data.aboutMe;
         $scope.image = data.image.url.replace('sz=50', 'sz=70');
       });
   })
-  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location, uiCalendarConfig) {
+  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location, uiCalendarConfig, config) {
     $http.get('/api/v1/chapters/' + $routeParams.chapterId).success(function (data) {
       if (data.geo) {
         data.geo.latitude = data.geo.lat;
@@ -94,7 +94,7 @@ angular.module('gdgxHubApp')
     });
 
     $http.get('https://www.googleapis.com/plus/v1/people/' + $routeParams.chapterId +
-    '?fields=aboutMe,image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg')
+    '?fields=aboutMe,image&key=' + config.GOOGLE_API_KEY)
       .success(function (data) {
         $scope.about = data.aboutMe;
         $scope.image = data.image.url.replace('sz=50', 'sz=70');

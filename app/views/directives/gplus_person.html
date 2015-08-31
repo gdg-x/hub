@@ -1,14 +1,16 @@
 <div class="card people">
    <div class="card-top green">
-      <a href="#">
-         <img ng-src="{{person.image.url}}" alt=""/>
+      <a ng-href="https://plus.google.com/{{gplusId}}">
+         <img ng-src="{{person.image.url}}" alt="{{person.displayName}}"/>
       </a>
    </div>
    <div class="card-info">
-      <a class="title" href="#">{{person.displayName}}</a>
+      <a class="title" ng-href="https://plus.google.com/{{gplusId}}">{{person.displayName}}</a>
       <div class="desc" ng-bind-html="person.aboutMe"></div>
    </div>
    <div class="card-bottom">
-      <a ng-href="https://plus.google.com/{{gplusId}}"><button class="btn btn-block">Profile on G+</button></a>
+      <a ng-href="https://plus.google.com/{{gplusId}}">
+        <button class="btn btn-block">Profile on G+</button>
+      </a>
    </div>
 </div>

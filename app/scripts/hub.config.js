@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('gdgxHubApp')
+  .constant('GOOGLE_API_KEY', 'AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg')
+  .service('config', config)
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
@@ -73,3 +75,9 @@ angular.module('gdgxHubApp')
 
     $locationProvider.html5Mode(true);
   });
+
+function config(GOOGLE_API_KEY) {
+  return {
+    GOOGLE_API_KEY: GOOGLE_API_KEY
+  };
+}
