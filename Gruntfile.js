@@ -23,6 +23,9 @@ module.exports = function (grunt) {
       dist: 'dist'
     },
     express: {
+      options: {
+        port: process.env.PORT || 9000
+      },
       dev: {
         options: {
           script: 'server.js',

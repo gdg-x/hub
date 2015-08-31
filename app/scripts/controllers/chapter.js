@@ -123,7 +123,7 @@ angular.module('gdgxHubApp')
 
     $scope.events = function (start, end, callback) {
       $http.get('/api/v1/chapters/' + $routeParams.chapterId + '/events/' +
-      start.getTime() + '/' + end.getTime())
+      start.toDate().getTime() + '/' + end.toDate().getTime())
         .success(function (resp) {
           var events = [];
           var data = resp.items;
