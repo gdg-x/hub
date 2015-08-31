@@ -71,7 +71,7 @@ if (cluster.isMaster) {
   // Passport Configuration
   require('./lib/config/passport')();
 
-  if (config.env === 'production') {
+  if (config.env === 'production' && config.redis) {
     var myId = process.env.OPENSHIFT_GEAR_UUID + '';
     if (cluster.isWorker) {
       myId = process.env.OPENSHIFT_GEAR_UUID + '-' + cluster.worker.process.pid;

@@ -4,7 +4,7 @@ angular.module('gdgxHubApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ngRoute'
   'googlechart', 'ui.calendar', 'ui.bootstrap', 'google-maps', 'gdgxHubApp.directives.gplus',
   'gdgxHubApp.directives.metrics', 'gdgxHubApp.directives.d3', 'gdgxHubApp.directives.moment', 'directive.g+signin'
 ])
-  .run(function ($rootScope, $location, $http, $window, $log, Utilities) {
+  .run(function ($rootScope, $location, $http, $window, $log, Utilities, config) {
     $rootScope.user = {
       authResult: undefined,
       auth: false
@@ -41,7 +41,7 @@ angular.module('gdgxHubApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ngRoute'
           $http.post('/signin', {code: authResult.code}).success(function (data) {
 
             if (data.user === claims.sub) {
-              $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=9MZ8QiVlgHqPrJQXU9I53EiW', {
+              $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=' + config.GOOGLE_API_KEY, {
                 headers: {'Authorization': 'Bearer ' + authResult.access_token} // jshint ignore:line
               }).success(function (additional) { // jshint ignore:line
                 $rootScope.user = {
