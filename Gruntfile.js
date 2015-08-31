@@ -23,18 +23,17 @@ module.exports = function (grunt) {
       dist: 'dist'
     },
     express: {
-      options: {
-        port: process.env.PORT || 9000
-      },
       dev: {
         options: {
           script: 'server.js',
+          port: process.env.PORT || 9000,
           debug: true
         }
       },
       prod: {
         options: {
           script: 'dist/server.js',
+          port: process.env.PORT || 3000,
           node_env: 'production' // jshint ignore:line
         }
       }
