@@ -103,9 +103,7 @@ angular.module('gdgxHubApp')
     $scope.chapterCalendar = {};
 
     $scope.alertOnEventClick = function (event) {
-      $scope.$apply(function () {
-        $location.path('/events/' + event.id);
-      });
+      $location.path('/events/' + event.id);
     };
 
     $scope.chapterCalendarConfig = {
@@ -121,7 +119,7 @@ angular.module('gdgxHubApp')
       calendar.fullCalendar('changeView', view);
     };
 
-    $scope.events = function (start, end, callback) {
+    $scope.events = function (start, end, timezone, callback) {
       $http.get('/api/v1/chapters/' + $routeParams.chapterId + '/events/' +
       start.toDate().getTime() + '/' + end.toDate().getTime())
         .success(function (resp) {
@@ -138,7 +136,9 @@ angular.module('gdgxHubApp')
             });
           }
 
-          callback(events);
+          if (callback) {
+            callback(events);
+          }
         });
     };
 
