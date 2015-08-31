@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gdgxHubApp.directives.gplus', [])
-  .directive('gplusPerson', ['$http', function ($http) {
+  .directive('gplusPerson', function ($http, config) {
     return {
       restrict: 'EA',
       templateUrl: 'directives/gplus_person',
@@ -12,7 +12,7 @@ angular.module('gdgxHubApp.directives.gplus', [])
         scope.$watch('gplusId', function (oldVal, newVal) {
           if (newVal) {
             $http.get('https://www.googleapis.com/plus/v1/people/' + newVal +
-                      '?fields=aboutMe%2CdisplayName%2Cimage&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg')
+                      '?fields=aboutMe%2CdisplayName%2Cimage&key=' + config.GOOGLE_API_KEY)
               .success(function (data) {
                 data.image.url = data.image.url.replace('sz=50', 'sz=170');
                 scope.person = data;
@@ -21,4 +21,4 @@ angular.module('gdgxHubApp.directives.gplus', [])
         });
       }
     };
-  }]);
+  });

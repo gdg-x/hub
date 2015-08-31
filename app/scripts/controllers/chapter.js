@@ -49,7 +49,7 @@ angular.module('gdgxHubApp')
         $scope.chapters = data;
       });
   })
-  .controller('ChapterMetricsCtrl', function ($scope, $http, $routeParams) {
+  .controller('ChapterMetricsCtrl', function ($scope, $http, $routeParams, config) {
 
     $scope.month = (moment().months() + 1);
     $scope.year = moment().year();
@@ -71,13 +71,13 @@ angular.module('gdgxHubApp')
     });
 
     $http.get('https://www.googleapis.com/plus/v1/people/' + $routeParams.chapterId +
-    '?fields=aboutMe,image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg')
+    '?fields=aboutMe,image&key=' + config.GOOGLE_API_KEY)
       .success(function (data) {
         $scope.about = data.aboutMe;
         $scope.image = data.image.url.replace('sz=50', 'sz=70');
       });
   })
-  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location) {
+  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location, uiCalendarConfig, config) {
     $http.get('/api/v1/chapters/' + $routeParams.chapterId).success(function (data) {
       if (data.geo) {
         data.geo.latitude = data.geo.lat;
@@ -94,7 +94,7 @@ angular.module('gdgxHubApp')
     });
 
     $http.get('https://www.googleapis.com/plus/v1/people/' + $routeParams.chapterId +
-    '?fields=aboutMe,image&key=AIzaSyD7v04m_bTu-rcWtuaN3fTP9NBmjhB7lXg')
+    '?fields=aboutMe,image&key=' + config.GOOGLE_API_KEY)
       .success(function (data) {
         $scope.about = data.aboutMe;
         $scope.image = data.image.url.replace('sz=50', 'sz=70');
@@ -103,9 +103,7 @@ angular.module('gdgxHubApp')
     $scope.chapterCalendar = {};
 
     $scope.alertOnEventClick = function (event) {
-      $scope.$apply(function () {
-        $location.path('/events/' + event.id);
-      });
+      $location.path('/events/' + event.id);
     };
 
     $scope.chapterCalendarConfig = {
@@ -118,12 +116,12 @@ angular.module('gdgxHubApp')
     };
 
     $scope.changeCalendarView = function (view, calendar) {
-      calendar.fullCalendar('changeView', view);
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
 
-    $scope.events = function (start, end, callback) {
+    $scope.events = function (start, end, timezone, callback) {
       $http.get('/api/v1/chapters/' + $routeParams.chapterId + '/events/' +
-      start.getTime() + '/' + end.getTime())
+      start.toDate().getTime() + '/' + end.toDate().getTime())
         .success(function (resp) {
           var events = [];
           var data = resp.items;
@@ -138,7 +136,9 @@ angular.module('gdgxHubApp')
             });
           }
 
-          callback(events);
+          if (callback) {
+            callback(events);
+          }
         });
     };
 

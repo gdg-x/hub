@@ -8,7 +8,9 @@
 			<span>{{chapter.city}}, {{chapter.country.name}}</span>
 		</div>
 		<div class="span2" style="text-align: right; padding-top: 20px;">
-			<a class="btn btn-primary" ng-href="/chapters/{{chapter._id}}/metrics"><i class="fa fa-bar-chart-o"></i> Metrics</a>
+			<a class="btn btn-primary" ng-href="/chapters/{{chapter._id}}/metrics">
+        <span class="fa fa-bar-chart-o"></span> Metrics
+      </a>
 		</div>
 	</div>
 	<div class="row">
@@ -20,9 +22,9 @@
 			<h3>Event Calendar</h3>
 			<div class="span8" style="margin-left: 0px">
 				<div class="btn-group">
-					<button class="btn btn-success" ng-click="changeCalendarView('agendaDay', chapterCalendar)">Day</button>
-		            <button class="btn btn-success" ng-click="changeCalendarView('agendaWeek', chapterCalendar)">Week</button>
-		            <button class="btn btn-success" ng-click="changeCalendarView('month', chapterCalendar)">Month</button>
+					<button class="btn btn-success" ng-click="changeCalendarView('agendaDay', 'chapterCalendar')">Day</button>
+		            <button class="btn btn-success" ng-click="changeCalendarView('agendaWeek', 'chapterCalendar')">Week</button>
+		            <button class="btn btn-success" ng-click="changeCalendarView('month', 'chapterCalendar')">Month</button>
 	            </div>
 				<div ui-calendar="chapterCalendarConfig" ng-model="eventSource" calendar="chapterCalendar"></div>
 			</div>

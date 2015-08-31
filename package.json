@@ -2,6 +2,7 @@
   "name": "gdgx-hub",
   "description": "APIs for everything GDG",
   "homepage": "http://hub.gdgx.io",
+  "license": "Apache-2.0",
   "keywords": [
     "gdg",
     "hub",
@@ -100,12 +101,7 @@
   "scripts": {
     "start": "grunt serve",
     "startProd": "grunt serve:dist",
+    "configProd": "sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000;export PORT=3000;",
     "test": "grunt test"
-  },
-  "licenses": [
-    {
-      "type": "Apache 2.0 License",
-      "url": "https://raw.github.com/gdg-x/hub/master/LICENSE"
-    }
-  ]
+  }
 }

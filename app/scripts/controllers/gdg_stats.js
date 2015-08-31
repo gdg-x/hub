@@ -34,7 +34,7 @@ angular.module('gdgxHubApp')
       data: {
         'cols': [
           {id: 't', label: 'Tags', type: 'string'},
-          {id: 's', label: 'Occurences', type: 'number'}
+          {id: 's', label: 'Occurrences', type: 'number'}
         ]
       }
     };

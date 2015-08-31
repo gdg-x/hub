@@ -29,12 +29,14 @@ module.exports = function (grunt) {
       dev: {
         options: {
           script: 'server.js',
+          port: process.env.PORT || 9000,
           debug: true
         }
       },
       prod: {
         options: {
           script: 'dist/server.js',
+          port: process.env.PORT || 3000,
           node_env: 'production' // jshint ignore:line
         }
       }
