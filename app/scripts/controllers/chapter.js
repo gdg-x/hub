@@ -77,7 +77,7 @@ angular.module('gdgxHubApp')
         $scope.image = data.image.url.replace('sz=50', 'sz=70');
       });
   })
-  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location) {
+  .controller('ChapterDetailCtrl', function ($scope, $http, $routeParams, $location, uiCalendarConfig) {
     $http.get('/api/v1/chapters/' + $routeParams.chapterId).success(function (data) {
       if (data.geo) {
         data.geo.latitude = data.geo.lat;
@@ -116,7 +116,7 @@ angular.module('gdgxHubApp')
     };
 
     $scope.changeCalendarView = function (view, calendar) {
-      calendar.fullCalendar('changeView', view);
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
 
     $scope.events = function (start, end, timezone, callback) {
