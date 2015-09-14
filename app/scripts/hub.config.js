@@ -73,6 +73,10 @@ angular.module('gdgxHubApp')
         templateUrl: 'partials/gdg_stats',
         controller: 'GdgStatsCtrl'
       })
+      .when('/admin/tags/:tagId', {
+        templateUrl: 'partials/admin_tag_metadata',
+        controller: 'AdminTagCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
