@@ -88,7 +88,7 @@
     "karma-jasmine": "0.1.5",
     "karma-ng-html2js-preprocessor": "0.1.0",
     "karma-ng-scenario": "0.1.0",
-    "karma-phantomjs-launcher": "0.1.1",
+    "karma-phantomjs-launcher": "0.2.1",
     "karma-requirejs": "0.2.1",
     "karma-script-launcher": "0.1.0",
     "load-grunt-tasks": "0.2.0",

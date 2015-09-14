@@ -1,3 +1,4 @@
+'use strict';
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 
@@ -22,7 +23,6 @@ module.exports = function(config) {
       'app/bower_components/angular-directive.g-signin/google-plus-signin.js',
       'app/bower_components/underscore/underscore.js',
       'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
-      'app/bower_components/jquery-ui/ui/jquery-ui.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'app/bower_components/moment/moment.js',
       'app/bower_components/fullcalendar/dist/fullcalendar.js',
