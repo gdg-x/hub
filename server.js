@@ -21,12 +21,31 @@ console.log = function () {
   }
 };
 
-if (cluster.isMaster) {
+function initWorker(worker) {
+  var listeners;
 
+  listeners = worker.process.listeners('exit')[0];
+  var exit = listeners[Object.keys(listeners)[0]];
+
+  listeners = worker.process.listeners('disconnect')[0];
+  var disconnect = listeners[Object.keys(listeners)[0]];
+
+  worker.process.removeListener('exit', exit);
+  worker.process.once('exit', function(exitCode, signalCode) {
+    if (worker.state !== 'disconnected') {
+      disconnect();
+    }
+    exit(exitCode, signalCode);
+  });
+}
+
+if (cluster.isMaster) {
+  var i;
   // Fork workers.
-  for (var i = 0; i < numCPUs; i++) {
+  for (i = 0; i < numCPUs; i++) {
     setTimeout(function () {
       var worker = cluster.fork();
+      initWorker(worker);
       console.log('worker started, PID ' + worker.process.pid);
     }, (i + 1) * 5000); // jshint ignore:line
   }
@@ -34,6 +53,7 @@ if (cluster.isMaster) {
   cluster.on('exit', function (deadWorker, code, signal) {
     // Restart the worker
     var worker = cluster.fork();
+    initWorker(worker);
 
     // Note the process IDs
     var newPID = worker.process.pid;
@@ -43,16 +63,12 @@ if (cluster.isMaster) {
     console.log('worker ' + oldPID + ' died. Code: ' + code + ', Signal: ' + signal);
     console.log('worker ' + newPID + ' born.');
   });
-
 } else {
   // Default node environment to development
   process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
   // Application Config
   var config = require('./lib/config/config');
-
-  // Disable NewRelic for now.
-  //var newrelic = require('newrelic');
 
   // Connect to database
   var db = mongoose.connect(config.mongo.uri, config.mongo.options); // jshint ignore:line
@@ -64,6 +80,7 @@ if (cluster.isMaster) {
     require(modelsPath + '/' + file);
   });
 
+  // Import static data
   require('./lib/fixtures')();
 
   var risky = require('./lib/risky');
@@ -72,9 +89,9 @@ if (cluster.isMaster) {
   require('./lib/config/passport')();
 
   if (config.env === 'production' && config.redis) {
-    var myId = process.env.OPENSHIFT_GEAR_UUID + '';
+    var myId = 'workerId';
     if (cluster.isWorker) {
-      myId = process.env.OPENSHIFT_GEAR_UUID + '-' + cluster.worker.process.pid;
+      myId = 'worker-' + cluster.worker.process.pid;
     }
     risky.connect({
       port: config.redis.port,
