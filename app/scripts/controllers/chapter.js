@@ -1,33 +1,6 @@
 'use strict';
 
 angular.module('gdgxHubApp')
-  .controller('ChapterCtrl', function ($scope, $http) {
-    $http.get('/api/v1/chapters?perpage=999&fields=_id,name,geo,country,status&sort=country').success(function (resp) {
-
-      var chapters = {};
-      var data = resp.items;
-      for (var i = 0; i < data.length; i++) {
-        var chapter = data[i];
-
-        if (chapter.geo) {
-          chapter.geo.latitude = chapter.geo.lat;
-          chapter.geo.longitude = chapter.geo.lng;
-          delete chapter.geo.lng;
-          delete chapter.geo.lat;
-        }
-
-        if (chapter.country) {
-          if (!chapters[chapter.country.name]) {
-            chapters[chapter.country.name] = {code: chapter.country._id, chapters: []};
-          }
-
-          chapters[chapter.country.name].chapters.push(chapter);
-        }
-      }
-      $scope.chapters_flat = data; // jshint ignore:line
-      $scope.chapters = chapters;
-    });
-  })
   .controller('ChapterCountryCtrl', function ($scope, $http, $routeParams) {
     $scope.country = $routeParams.country;
     $scope.country_zoom = 10; // jshint ignore:line

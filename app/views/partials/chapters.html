@@ -1,19 +1,29 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<!--<google-map center="{ latitude: 0, longitude: 0}" zoom="2">
-				<marker ng-repeat="chapter in chapters_flat" coords='chapter.geo'>
-				</marker>
-			</google-map>-->
+      <ui-gmap-google-map center="map.center" options="map.options" zoom="map.zoom"
+                    draggable="true" control="map.control" ng-if="map != null">
+        <ui-gmap-markers models="markers" idKey="'id'" clusterOptions="map.cluster"
+                         coords="'coordinates'" doCluster="true" click="onClick">
+          <ui-gmap-window ng-repeat="marker in ::markers" coords="marker.coordinates" show="marker.show">
+            <div>
+              <b><a href="/chapters/{{ ::marker.id }}/">{{ ::marker.name }}</a></b>
+            </div>
+          </ui-gmap-window>
+        </ui-gmap-markers>
+      </ui-gmap-google-map>
 		</div>
 	</div>
 	<div class="row masonry">
-		<div ng-repeat="(country, items) in chapters" class="span4">
-			<a ng-href="/chapters/country/{{items.code}}"><h3>{{country}}</h3></a>
+		<div ng-repeat="country in ::countries" class="span4">
+			<a ng-href="/chapters/country/{{ ::country.code }}">
+        <h3>{{ ::country.chapters[0].country.name }}</h3>
+      </a>
 			<div class="card">
 				<div class="card-wh-body">
-					<div ng-repeat="chapter in items.chapters">
-						<a ng-href="/chapters/{{chapter._id}}">{{chapter.name}}</a> <img ng-show="chapter.status == 'incubating'" ng-src="/images/incubating.png">
+					<div ng-repeat="chapter in ::country.chapters">
+						<a ng-href="/chapters/{{ ::chapter._id }}">{{ ::chapter.name }}</a>
+            <img ng-if="::chapter.status == 'incubating'" ng-src="/images/incubating.png">
 					</div>
 				</div>
 			</div>
