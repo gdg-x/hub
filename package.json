@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/gdg-x/hub/issues"
   },
-  "version": "0.0.2",
+  "version": "0.1.0",
   "dependencies": {
     "express": "3.4.3",
     "express-annotations": "0.1.0",
