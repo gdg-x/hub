@@ -18,7 +18,9 @@ angular.module('gdgxHubApp')
           }
         }
 
-        $scope.country_geo = {latitude: data[0].geo.latitude, longitude: data[0].geo.longitude}; // jshint ignore:line
+        // jshint -W106
+        $scope.country_geo = {latitude: data[0].geo.latitude, longitude: data[0].geo.longitude};
+        // jshint +W106
         $scope.chapters = data;
       });
   })

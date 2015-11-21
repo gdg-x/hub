@@ -9,47 +9,40 @@ The public instance of the GDG[x] Hub is hosted at [https://hub.gdgx.io]
 
 ## Required tools
 * [Node.js](https://nodejs.org/download/)
-* Bower - `npm install -g bower`
-* Grunt - `npm install -g grunt grunt-cli`
 * [MongoDB](https://github.com/gdg-x/hub/wiki/MongoDB-Config)
 
-Note: `npm` may require `sudo` on OS X or Linux.
 
 ## Install dependencies
-```
-npm install
-bower install
-```
+Run `npm install`
+
 ## Configure API keys
 
-lib/config/keys.js
-* Google API
-* New Relic API
+1. Define the **simpleApiKey**: The API key for your project, available from the [Cloud Console](https://cloud.google.com/console)
+    1. Create a new project then go to APIs & Auth->APIs, activate Google+ API.
+    1. Go to APIs & Auth->Credentials. Add Credentials->API key->Browser key->Create (keep `Any referrer allowed` set).
+1. Define the **oauthClientId** and **oauthClientSecret**: The Client Id and secret for your project, available from the [Cloud Console](https://cloud.google.com/console)
+    1. Go to APIs & Auth->Credentials. Add Credentials->API key->OAuth 2.0 client ID->Web Application->Create.
+
+* lib/config/keys.js
+    * simpleApiKey - Browser key from step 1
+    * oauthClientId - Web Application clientId from step 2
+    * oauthClientSecret - Web Application client secret from step 2
 
 ## Check Mongo Server
-```
-mongod
-```
+Run `mongostart` or `mongod`
 
-## Build the Hub
-```
-grunt build
-```
-The distributable version will be placed in /dist
+## Build and start the Hub
+Run `npm start`
 
-## Start Debug Server (with LiveReload)
-```
-grunt serve
-```
+The distributable version will be placed in /dist.
+The debug web server has LiveReload.
 
 ## Run Tests
-```
-grunt test
-```
+Run `npm test`
 
-## Check installation
-* check that all event data has been received by ???
+## Ingest data into your local Hub instance
+See the [wiki](https://github.com/gdg-x/hub/wiki/Ingesting-data-into-the-Hub).
 
-## History (just for the fun of it)
+#### For GDG-X Core
 
-https://docs.google.com/document/d/1X8fuwTvA4Y2Hm_PmP8gE_VH6kNd6lYGXjbOfoNUapcM/edit?usp=sharing&authkey=CMiRgOYF
+[History](https://docs.google.com/document/d/1X8fuwTvA4Y2Hm_PmP8gE_VH6kNd6lYGXjbOfoNUapcM/edit?usp=sharing&authkey=CMiRgOYF)

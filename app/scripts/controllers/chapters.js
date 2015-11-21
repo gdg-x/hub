@@ -50,7 +50,7 @@ angular.module('gdgxHubApp')
 
             marker.onClick = function(marker) {
               marker.show = !marker.show;
-            }.bind(marker, marker);
+            }.bind(marker, marker); // jshint ignore:line
 
             $scope.markers.push(marker);
           }
