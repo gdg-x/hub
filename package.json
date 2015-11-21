@@ -53,10 +53,12 @@
     "slugify": "0.1.1"
   },
   "devDependencies": {
+    "bower": "1.6.5",
     "connect-livereload": "0.3.0",
     "grunt": "0.4.2",
     "grunt-autoprefixer": "0.4.0",
     "grunt-bower-install": "0.7.0",
+    "grunt-cli": "0.1.13",
     "grunt-concurrent": "0.4.1",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-coffee": "0.7.0",
@@ -96,9 +98,11 @@
     "time-grunt": "0.2.10"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0"
   },
   "scripts": {
+    "postinstall": "bower install",
+    "prestart": "grunt",
     "start": "grunt serve",
     "startProd": "grunt serve:dist",
     "configProd": "sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000;export PORT=3000;",
