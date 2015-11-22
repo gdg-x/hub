@@ -20,7 +20,8 @@ angular.module('gdgxHubApp')
           {
             id: $routeParams.eventId,
             geo: {
-              latitude: data.geo.latitude, longitude: data.geo.longitude
+              latitude: data.geo.latitude,
+              longitude: data.geo.longitude
             }
           }
         ];
