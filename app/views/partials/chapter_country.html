@@ -1,42 +1,44 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<h3>GDG Chapters in {{chapters.0.country.name}}</h3>
+			<h3>GDG Chapters in {{chapters[0].country.name}}</h3>
 		</div>
 	</div>
+
 	<div class="row">
-		<div class="span12">
-			<div ng-switch on="!!chapters.0.geo">
-				<div class="card" ng-switch-when="true">
-					<div class="card-wh-body">
-						<google-map center="country_geo" zoom="country_zoom" id="map_country">
-							<marker ng-repeat="chapter in chapters" coords='chapter.geo'>
-							</marker>
-						</google-map>
-					</div>
-				</div>
-			</div>
+		<div class="span12" ng-if="::map.center">
+      <ui-gmap-google-map center="map.center" options="map.options" zoom="map.zoom" control="map.control">
+        <ui-gmap-markers models="chapters" idKey="'_id'" clusterOptions="map.cluster"
+                         coords="'geo'" doCluster="true" click="onClick">
+          <ui-gmap-window ng-repeat="chapter in ::chapters" coords="chapter.geo" show="chapter.show">
+            <div>
+              <b><a href="/chapters/{{ ::chapter._id }}/">{{ ::chapter.name }}</a></b>
+            </div>
+          </ui-gmap-window>
+        </ui-gmap-markers>
+      </ui-gmap-google-map>
 		</div>
 	</div>
 	<div class="row chapter_country">
-		<div class="span2 organizer" ng-repeat="chapter in chapters">
-			
+		<div class="span2 organizer" ng-repeat="chapter in ::chapters">
+
 			<div class="card people">
 				<div class="card-top green">
-					<a ng-href="/chapters/{{chapter._id}}">
-						<google-map style="width: 170px; height:150px" class="card-map" id="map_{{$index}}" center="chapter.geo" zoom="chapter.geo.zoom" options="{disableDefaultUI: true, scrollwheel: false}">
-							<marker coords='chapter.geo'></marker>
-						</google-map>
+					<a ng-href="/chapters/{{ ::chapter._id }}" ng-if="::chapter.geo" class="card-top">
+            <ui-gmap-google-map center="chapter.geo" options="chapterMapOptions" zoom="9" class="card-top">
+            </ui-gmap-google-map>
 					</a>
 				</div>
 				<div class="card-info">
-					<a ng-href="/chapters/{{chapter._id}}">{{chapter.name}}</a>
+					<a ng-href="/chapters/{{ ::chapter._id }}" style="margin-left: 14px">{{ ::chapter.name }}</a>
 					<div class="desc">
-						{{chapter.city}}, <span ng-show="chapter.state != undefined">{{chapter.state}},</span> {{chapter.country.name}}
+						{{ ::chapter.city }}, <span ng-show="::chapter.state">{{ ::chapter.state }},</span> {{ ::chapter.country.name }}
 					</div>
 				</div>
 				<div class="card-bottom">
-					<a ng-href="https://plus.google.com/{{chapter._id}}"><button class="btn btn-block">Profile on G+</button></a>
+					<a ng-href="https://plus.google.com/{{ ::chapter._id }}">
+            <button class="btn btn-block">Profile on G+</button>
+          </a>
 				</div>
 			</div>
 		</div>
