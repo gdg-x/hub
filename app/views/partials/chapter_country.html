@@ -26,7 +26,6 @@
 				<div class="card-top green">
 					<a ng-href="/chapters/{{ ::chapter._id }}" ng-if="::chapter.geo" class="card-top">
             <ui-gmap-google-map center="chapter.geo" options="chapterMapOptions" zoom="9" class="card-top">
-              <ui-gmap-markers models="chapter.markers" idKey="'id'" coords="'geo'"></ui-gmap-markers>
             </ui-gmap-google-map>
 					</a>
 				</div>

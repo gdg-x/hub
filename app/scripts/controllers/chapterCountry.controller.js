@@ -33,25 +33,15 @@ angular.module('gdgxHubApp')
                 longitude: data[i].geo.longitude
               };
             }
-            data[i].markers = [
-              {
-                id: data[i]._id,
-                geo: {
-                  latitude: data[i].geo.latitude,
-                  longitude: data[i].geo.longitude
-                }
-              }
-            ];
             data[i].show = false;
             data[i].onClick = function(marker) {
               marker.show = !marker.show;
-            }.bind(data[i], data[i]); // jshint ignore:line
+            }.bind(data[i], data[i]);
 
             delete data[i].geo.lng;
             delete data[i].geo.lat;
           }
         }
         $scope.chapters = data;
-
       });
   });
