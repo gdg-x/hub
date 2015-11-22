@@ -345,3 +345,13 @@ li {
         margin-left: 0px;
     }
 }
+.card-top > .angular-google-map,
+.card-top > .angular-google-map > .angular-google-map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 170px;
+    height: 150px;
+    background-color: #ffffff;
+}

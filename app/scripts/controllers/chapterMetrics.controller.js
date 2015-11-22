@@ -1,29 +1,6 @@
 'use strict';
 
 angular.module('gdgxHubApp')
-  .controller('ChapterCountryCtrl', function ($scope, $http, $routeParams) {
-    $scope.country = $routeParams.country;
-    $scope.country_zoom = 10; // jshint ignore:line
-    $http.get('/api/v1/chapters/country/' + $routeParams.country + '?sort=name')
-      .success(function (resp) {
-
-        var data = resp.items;
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].geo) {
-            data[i].geo.latitude = data[i].geo.lat;
-            data[i].geo.longitude = data[i].geo.lng;
-            data[i].geo.zoom = 10;
-            delete data[i].geo.lng;
-            delete data[i].geo.lat;
-          }
-        }
-
-        // jshint -W106
-        $scope.country_geo = {latitude: data[0].geo.latitude, longitude: data[0].geo.longitude};
-        // jshint +W106
-        $scope.chapters = data;
-      });
-  })
   .controller('ChapterMetricsCtrl', function ($scope, $http, $routeParams, config) {
 
     $scope.month = (moment().months() + 1);
