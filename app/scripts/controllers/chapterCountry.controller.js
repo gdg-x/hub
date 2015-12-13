@@ -36,7 +36,7 @@ angular.module('gdgxHubApp')
             data[i].show = false;
             data[i].onClick = function(marker) {
               marker.show = !marker.show;
-            }.bind(data[i], data[i]);
+            }.bind(data[i], data[i]); // jshint ignore:line
 
             delete data[i].geo.lng;
             delete data[i].geo.lat;
