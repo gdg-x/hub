@@ -7,7 +7,13 @@ angular.module('gdgxHubApp')
       GOOGLE_API_KEY: GOOGLE_API_KEY
     };
   })
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider, $locationProvider, uiGmapGoogleMapApiProvider, GOOGLE_API_KEY) {
+    uiGmapGoogleMapApiProvider.configure({
+      key: GOOGLE_API_KEY,
+      v: '3.20',
+      libraries: 'weather,geometry,visualization'
+    });
+
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',

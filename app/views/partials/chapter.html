@@ -20,7 +20,7 @@
 				</div>
 			</div>
 			<h3>Event Calendar</h3>
-			<div class="span8" style="margin-left: 0px">
+			<div class="span8" style="margin-left: 0">
 				<div class="btn-group">
 					<button class="btn btn-success" ng-click="changeCalendarView('agendaDay', 'chapterCalendar')">Day</button>
 		            <button class="btn btn-success" ng-click="changeCalendarView('agendaWeek', 'chapterCalendar')">Week</button>
@@ -30,18 +30,19 @@
 			</div>
 		</div>
 		<div class="span4">
-			<div ng-switch on="!!chapter.geo">
-				<div class="card" ng-switch-when="true">
-					<div class="card-wh-body">
-						<google-map center="map_center" zoom="chapter.geo.zoom">
-							<marker coords='chapter.geo'>
-							</marker>
-						</google-map>
-					</div>
-				</div>
-			</div>
+      <div ng-show="!!chapter.geo" class="row">
+        <div class="card span5">
+          <div class="card-wh-body">
+            <ui-gmap-google-map center="chapter.map.options.center" zoom="chapter.map.options.zoom"
+                                draggable="true" control="chapter.map.control" ng-if="chapter.geo != null">
+              <ui-gmap-markers models="markers" id="'_id'" coords="'geo'"></ui-gmap-markers>
+            </ui-gmap-google-map>
+          </div>
+        </div>
+      </div>
+
 			<h3>Organizers</h3>
-			<div style="margin-left: 0px">
+			<div style="margin-left: 0">
 				<div ng-repeat="organizer in chapter.organizers" class="span2 organizer" gplus-person gplus-id="organizer"></div>
 			</div>
 		</div>
