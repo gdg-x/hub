@@ -1,0 +1,446 @@
+{
+  "kind": "discovery#restDescription",
+  "version": "v1",
+  "name": "hub",
+  "title": "GDG[x] Hub API",
+  "description": "Everything GDG",
+  "ownerDomain": "hub.gdgx.io",
+  "baseUrl": "https://hub.gdgx.io/api/v1/",
+  "status": "alpha",
+  "ownerName": "GDG[x]",
+  "resources": {
+    "url": {
+      "methods": {
+        "applications.applicationId": {
+          "id": "hub.applications.applicationId",
+          "path": "/applications/:applicationId",
+          "method": "get",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "": {
+          "id": "hub.",
+          "path": "/",
+          "method": "get"
+        },
+        "applications": {
+          "id": "hub.applications",
+          "path": "/applications",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "applications.applicationId.simpleapikeys": {
+          "id": "hub.applications.applicationId.simpleapikeys",
+          "path": "/applications/:applicationId/simpleapikeys",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "applications.applicationId.consumers": {
+          "id": "hub.applications.applicationId.consumers",
+          "path": "/applications/:applicationId/consumers",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "chapters": {
+          "id": "hub.chapters",
+          "path": "/chapters",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list containing all Chapters"
+          }
+        },
+        "chapters.country.country": {
+          "id": "hub.chapters.country.country",
+          "path": "/chapters/country/:country",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list containing all Chapters of the specified Country"
+          }
+        },
+        "chapters.near.lat.lng.maxDistance": {
+          "id": "hub.chapters.near.lat.lng.maxDistance",
+          "path": "/chapters/near/:lat/:lng/:maxDistance",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of chapters which are within :maxDistance of the specified lat, lng (distances are expressed in kilometers)"
+          }
+        },
+        "chapters.chapterId": {
+          "id": "hub.chapters.chapterId",
+          "path": "/chapters/:chapterId",
+          "method": "get",
+          "doc": {
+            "summary": "Returns information on a single Chapter"
+          }
+        },
+        "events": {
+          "id": "hub.events",
+          "path": "/events",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events in the Hub Database"
+          }
+        },
+        "events.past": {
+          "id": "hub.events.past",
+          "path": "/events/past",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all past Events"
+          }
+        },
+        "events.upcoming": {
+          "id": "hub.events.upcoming",
+          "path": "/events/upcoming",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all upcoming Events"
+          }
+        },
+        "events.today": {
+          "id": "hub.events.today",
+          "path": "/events/today",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events happening today (UTC)"
+          }
+        },
+        "events.now": {
+          "id": "hub.events.now",
+          "path": "/events/now",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all events happening right now"
+          }
+        },
+        "events.stats": {
+          "id": "hub.events.stats",
+          "path": "/events/stats",
+          "method": "get",
+          "doc": {
+            "summary": "General statistics about schedules events, used tags etc."
+          }
+        },
+        "events.eventId.near": {
+          "id": "hub.events.eventId.near",
+          "path": "/events/:eventId/near",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of events happening in the vicinity (~500km) of the specified Event"
+          }
+        },
+        "events.near.lat.lng.maxDistance": {
+          "id": "hub.events.near.lat.lng.maxDistance",
+          "path": "/events/near/:lat/:lng/:maxDistance",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of upcoming/live events which are within :maxDistance of the specified lat, lng (distances are expressed in kilometers)"
+          }
+        },
+        "events.year.year": {
+          "id": "hub.events.year.year",
+          "path": "/events/year/:year",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events scheduled in the specified year"
+          }
+        },
+        "events.year.year.month": {
+          "id": "hub.events.year.year.month",
+          "path": "/events/year/:year/:month",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events scheduled in the specified year and month"
+          }
+        },
+        "events.tags": {
+          "id": "hub.events.tags",
+          "path": "/events/tags",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all the tags currently used for Events"
+          }
+        },
+        "events.eventId": {
+          "id": "hub.events.eventId",
+          "path": "/events/:eventId",
+          "method": "get",
+          "doc": {
+            "summary": "Returns information on a single Event"
+          }
+        },
+        "events.tag.tag": {
+          "id": "hub.events.tag.tag",
+          "path": "/events/tag/:tag",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events which have been assigned the specified tag(s)"
+          }
+        },
+        "events.tag.tag.upcoming": {
+          "id": "hub.events.tag.tag.upcoming",
+          "path": "/events/tag/:tag/upcoming",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all upcoming Events which have been assigned the specified tag(s)"
+          }
+        },
+        "events.tag.tag.start.end": {
+          "id": "hub.events.tag.tag.start.end",
+          "path": "/events/tag/:tag/:start/:end",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events happening between the specified start and end timestamps and have been assigned the specified tag(s)"
+          }
+        },
+        "events.start.end": {
+          "id": "hub.events.start.end",
+          "path": "/events/:start/:end",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events happening between the specified start and end timestamps"
+          }
+        },
+        "chapters.chapterId.events": {
+          "id": "hub.chapters.chapterId.events",
+          "path": "/chapters/:chapterId/events",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events scheduled by the specified Chapter"
+          }
+        },
+        "chapters.chapterId.events.upcoming": {
+          "id": "hub.chapters.chapterId.events.upcoming",
+          "path": "/chapters/:chapterId/events/upcoming",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all upcoming Events scheduled by the specified Chapter"
+          }
+        },
+        "chapters.chapterId.events.past": {
+          "id": "hub.chapters.chapterId.events.past",
+          "path": "/chapters/:chapterId/events/past",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all past Events by the specified Chapter"
+          }
+        },
+        "chapters.chapterId.events.month": {
+          "id": "hub.chapters.chapterId.events.month",
+          "path": "/chapters/:chapterId/events/month",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events scheduled in the current month by the specified Chapter"
+          }
+        },
+        "chapters.chapterId.events.year.year.month": {
+          "id": "hub.chapters.chapterId.events.year.year.month",
+          "path": "/chapters/:chapterId/events/year/:year/:month",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events scheduled by the specified Chapter in the specified year and month"
+          }
+        },
+        "chapters.chapterId.events.start.end": {
+          "id": "hub.chapters.chapterId.events.start.end",
+          "path": "/chapters/:chapterId/events/:start/:end",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events scheduled between the specified start and end timestamps by the specified Chapter"
+          }
+        },
+        "chapters.chapterId.events.tag.tag": {
+          "id": "hub.chapters.chapterId.events.tag.tag",
+          "path": "/chapters/:chapterId/events/tag/:tag",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Events by the specified Chapter which have been assigned the specified tag(s)"
+          }
+        },
+        "chapters.chapterId.events.stats": {
+          "id": "hub.chapters.chapterId.events.stats",
+          "path": "/chapters/:chapterId/events/stats",
+          "method": "get",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "gdes": {
+          "id": "hub.gdes",
+          "path": "/gdes",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list containing all GDEs"
+          }
+        },
+        "gdes.products": {
+          "id": "hub.gdes.products",
+          "path": "/gdes/products",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all the products there are GDEs for"
+          }
+        },
+        "gdes.product.productCode": {
+          "id": "hub.gdes.product.productCode",
+          "path": "/gdes/product/:productCode",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list containing all GDEs for a specified Product code"
+          }
+        },
+        "gdes.country.country": {
+          "id": "hub.gdes.country.country",
+          "path": "/gdes/country/:country",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list containing all GDEs of the specified Country"
+          }
+        },
+        "gdes.gdeId": {
+          "id": "hub.gdes.gdeId",
+          "path": "/gdes/:gdeId",
+          "method": "get",
+          "doc": {
+            "summary": "Returns information on a single GDE"
+          }
+        },
+        "metrics.types": {
+          "id": "hub.metrics.types",
+          "path": "/metrics/types",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of available metric types"
+          }
+        },
+        "metrics.daily.subject.metric.year.month": {
+          "id": "hub.metrics.daily.subject.metric.year.month",
+          "path": "/metrics/daily/:subject/:metric/:year/:month",
+          "method": "get",
+          "doc": {
+            "summary": "Returns the daily metric information for the specified subject and metric in the selected year and month"
+          }
+        },
+        "plus.posts.hashtag.hashtags": {
+          "id": "hub.plus.posts.hashtag.hashtags",
+          "path": "/plus/posts/hashtag/:hashtags",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of Google+ posts made by Chapters which contain the specified hashtag(s)"
+          }
+        },
+        "chapters.chapterId.posts": {
+          "id": "hub.chapters.chapterId.posts",
+          "path": "/chapters/:chapterId/posts",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of Google+ posts made by the specified Chapter"
+          }
+        },
+        "chapters.chapterId.posts.hashtags": {
+          "id": "hub.chapters.chapterId.posts.hashtags",
+          "path": "/chapters/:chapterId/posts/:hashtags",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of Google+ posts made by the specified Chapter which contain the specified hashtag(s)"
+          }
+        },
+        "tags": {
+          "id": "hub.tags",
+          "path": "/tags",
+          "method": "get",
+          "doc": {
+            "summary": "Returns a list of all Event Tags in the Hub Database"
+          }
+        },
+        "tags.tagId": {
+          "id": "hub.tags.tagId",
+          "path": "/tags/:tagId",
+          "method": "get",
+          "doc": {
+            "summary": "Returns information on a single tag"
+          }
+        },
+        "organizer.gplusId": {
+          "id": "hub.organizer.gplusId",
+          "path": "/organizer/:gplusId",
+          "method": "get",
+          "doc": {
+            "summary": "Returns if the specified Google+ user is an Organizer of one or more Chapters"
+          }
+        },
+        "admin.tasks": {
+          "id": "hub.admin.tasks",
+          "path": "/admin/tasks",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "admin.tasks.cluster": {
+          "id": "hub.admin.tasks.cluster",
+          "path": "/admin/tasks/cluster",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "admin.metrics.fix": {
+          "id": "hub.admin.metrics.fix",
+          "path": "/admin/metrics/fix",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "admin.cache.flush": {
+          "id": "hub.admin.cache.flush",
+          "path": "/admin/cache/flush",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "admin.prerender.flush": {
+          "id": "hub.admin.prerender.flush",
+          "path": "/admin/prerender/flush",
+          "method": "post",
+          "doc": {
+            "summary": "-"
+          }
+        },
+        "frisbee.gcm.unregister": {
+          "id": "hub.frisbee.gcm.unregister",
+          "path": "/frisbee/gcm/unregister",
+          "method": "post",
+          "doc": {
+            "summary": "Register a device for GCM push messages with Frisbee"
+          }
+        },
+        "frisbee.gcm.register": {
+          "id": "hub.frisbee.gcm.register",
+          "path": "/frisbee/gcm/register",
+          "method": "post",
+          "doc": {
+            "summary": "Register a device for GCM push messages with Frisbee"
+          }
+        },
+        "frisbee.user.home": {
+          "id": "hub.frisbee.user.home",
+          "path": "/frisbee/user/home",
+          "method": "put",
+          "doc": {
+            "summary": "Sets your Home GDG"
+          }
+        }
+      }
+    }
+  }
+}
