@@ -1,0 +1,7 @@
+{
+  "app": {
+    "api": {
+      "enabled": true
+    }
+  }
+}
