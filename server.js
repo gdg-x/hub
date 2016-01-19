@@ -1,65 +1,56 @@
-var express = require('express');
-var path = require('path');
-var fs = require('fs');
-var mongoose = require('mongoose');
-/**
- * Main application file
- */
+var config = require('config');
+var async = require('async');
+var log = require('./libs/log/')(module);
+var mongooseUtil = require('./libs/mongoose/');
 
-// Default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
-// Application Config
-var config = require('./lib/config/config');
-
-// Connect to database
-mongoose.connect(config.mongo.uri, config.mongo.options);
-
-// Bootstrap models
-var modelsPath = path.join(__dirname, 'lib/models');
-fs.readdirSync(modelsPath).forEach(function (file) {
-  console.log('Loading model...' + file.replace('.js', ''));
-  require(modelsPath + '/' + file);
-});
-
-// Import static data
-require('./lib/fixtures')();
-
-var risky = require('./lib/risky');
-
-// Passport Configuration
-require('./lib/config/passport')();
-
-if (config.env === 'production' && config.redis) {
-  var myId = 'workerId';
-  risky.connect({
-    port: config.redis.port,
-    host: config.redis.host,
-    auth: config.redis.password,
-    id: myId,
-    scope: 'risky'
+var server = function (done) {
+  mongooseUtil.init(function () {
+    var app = {
+      api: require('./apps/api/'),
+      cron: require('./apps/cron/')
+    };
+    var servers = {};
+    async.seq(
+      function (cb) {
+        if (config.app.api.enabled) {
+          app.api.init(function (apiApp) {
+            servers.api = apiApp;
+            cb();
+          });
+        } else {
+          cb();
+        }
+      },
+      function (cb) {
+        if (config.app.cron.enabled) {
+          app.cron.init(function (cronApp) {
+            servers.cron = cronApp;
+            cb();
+          });
+        } else {
+          cb();
+        }
+      }
+    )(function (err) {
+      if (done) {
+        done(err, servers);
+      }
+    });
   });
+};
+
+if (require.main === module) {
+  log.info('server is started in standalone mode');
+  server();
+} else {
+  log.info('server is started for testing');
+  module.exports = server;
 }
 
-// Initialize admin task handlers
-require('./lib/tasks')();
-
-var app = express();
-
-// Express settings
-require('./lib/config/express')(app);
-
-// Routing
-require('./lib/routes')(app);
-
-// Initialize cron jobs
-require('./lib/cron')();
-
-// Start server
-app.listen(config.port, config.hostname, function () {
-  console.log('Express server listening on port %d in %s mode',
-    config.port, app.get('env'));
-});
-
-// Expose app
-exports = module.exports = app;
+if (config.status === 'prod') {
+  process.on('uncaughtException', function (err) {
+    //noinspection JSCheckFunctionSignatures
+    log.error(JSON.parse(
+      JSON.stringify(err, ['stack', 'message', 'inner'], 3)));
+  });
+}
