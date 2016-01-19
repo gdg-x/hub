@@ -1,32 +1,9 @@
-'use strict';
-
-var mongoose = require('mongoose'),
-  redis = require('redis'),
-  config = require('../../../config/config'),
-  DailyMetric = mongoose.model('DailyMetric'),
-  moment = require('moment'),
-  middleware = require('../../../middleware'),
-  risky = require('../../../risky');
+var mongoose = require('mongoose');
+var config = require('config');
+var DailyMetric = mongoose.model('DailyMetric');
+var moment = require('moment');
 
 module.exports = function (app) {
-  var redisClient = null;
-
-  if (config.redis) {
-    log.info('Using redis for API Rate Limiting...');
-    // Setup Redis client for API Rate limiting
-    redisClient = redis.createClient(config.redis.port, config.redis.host);
-
-    if (config.redis.password) {
-      redisClient.auth(config.redis.password);
-    }
-    redisClient.on('ready', function () {
-      log.info('Redis is ready for use in API Rate Limiting.');
-    });
-    redisClient.on('error', function (err) {
-      console.error('ERR:REDIS:Admin: ' + err);
-    });
-  }
-
   app.route('post', '/admin/tasks', {summary: '-'},
     middleware.auth({roles: ['admin']}), function (req, res) {
       // jshint -W106
@@ -94,7 +71,11 @@ module.exports = function (app) {
             if (err) {
               res.jsonp({msg: 'flush failed', code: 500});
             } else {
-              res.jsonp({msg: 'flushed express cache', count: replies.length, code: 200});
+              res.jsonp({
+                msg: 'flushed express cache',
+                count: replies.length,
+                code: 200
+              });
             }
           });
         }
@@ -116,7 +97,11 @@ module.exports = function (app) {
             if (err) {
               res.jsonp({msg: 'flush failed', code: 500});
             } else {
-              res.jsonp({msg: 'flushed seo cache', count: replies.length, code: 200});
+              res.jsonp({
+                msg: 'flushed seo cache',
+                count: replies.length,
+                code: 200
+              });
             }
           });
         }

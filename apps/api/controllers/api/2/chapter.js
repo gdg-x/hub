@@ -6,4 +6,6 @@ var mongooseUtil = require(process.cwd() + '/libs/mongoose/');
 exports.list = function (req, res, next) {
   mongooseUtil.paging(Chapter, req, res, next);
 };
-exports.findById = mongooseUtil.findById.bind(null, Chapter);
+exports.findById = function (req, res, next) {
+  mongooseUtil.findById(Chapter, req, res, next);
+};
