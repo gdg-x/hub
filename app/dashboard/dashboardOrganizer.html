@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h2>Welcome Organizer!</h2>
+      <h3>Hi there. Glad to have you on board.</h3>
+      <div class="card">
+        <div class="card-wh-body">
+          Nothing yet. Watch this space.
+        </div>
+      </div>
+    </div>
+    <div class="span3">
+      <h3>Your GDGs</h3>
+      <div class="card">
+        <div class="card-wh-body">
+          <div ng-repeat="chapter in user.chapters">
+            <a ng-href="/chapters/{{chapter.id}}">{{chapter.name}}</a>
+            <a class="btn btn-primary" ng-href="/chapters/{{chapter.id}}/metrics">
+              <span class="fa fa-bar-chart-o"></span>
+              Metrics
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

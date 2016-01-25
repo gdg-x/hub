@@ -26,7 +26,7 @@ angular.module('gdgxHubApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ngRoute'
           $rootScope.position = position;
         });
       }, function (error) {
-        console.log(error);
+        $log.log(error);
       });
     }
 
@@ -38,34 +38,38 @@ angular.module('gdgxHubApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ngRoute'
       // Send login to server or save into cookie
       Utilities.decodeJwt(authResult.id_token, function (claims) { // jshint ignore:line
         if (authResult.status.signed_in) { // jshint ignore:line
-          $http.post('/signin', {code: authResult.code}).success(function (data) {
-
-            if (data.user === claims.sub) {
-              $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=' + config.GOOGLE_API_KEY, {
-                headers: {'Authorization': 'Bearer ' + authResult.access_token} // jshint ignore:line
-              }).success(function (additional) { // jshint ignore:line
-                $rootScope.user = {
-                  auth: authResult.status.signed_in, // jshint ignore:line
-                  authResult: authResult,
-                  image: additional.image.url.replace('sz=50', 'sz=32'),
-                  email: claims.email,
-                  userId: claims.sub,
-                  chapters: data.chapters,
-                  organizer: (data.chapters.length > 0)
-                };
-                $rootScope.$broadcast('authenticated');
-              });
-            } else {
-              $window.alert('ID Missmatch');
-            }
-          });
+          $http.post('/signin', {code: authResult.code})
+            .then(function (data) {
+              if (data.user === claims.sub) {
+                $http.get('https://www.googleapis.com/plus/v1/people/me?fields=image&key=' + config.GOOGLE_API_KEY, {
+                  headers: {'Authorization': 'Bearer ' + authResult.access_token} // jshint ignore:line
+                }).success(function (additional) { // jshint ignore:line
+                  $rootScope.user = {
+                    auth: authResult.status.signed_in, // jshint ignore:line
+                    authResult: authResult,
+                    image: additional.image.url.replace('sz=50', 'sz=32'),
+                    email: claims.email,
+                    userId: claims.sub,
+                    chapters: data.chapters,
+                    organizer: (data.chapters.length > 0)
+                  };
+                  $rootScope.$broadcast('authenticated');
+                  $log.info('Authentication successful.');
+                });
+              } else {
+                $log.error('ID Mismatch');
+              }
+            })
+            .catch(function (error) {
+              $log.error('Auth failure: ' + error.statusText);
+            });
         }
       });
     });
 
     $rootScope.$on('event:google-plus-signin-failure', function (event, authResult) {
-      // Auth failure or signout detected
-      $log.info('Auth failed');
+      // Auth failure or sign out detected
+      $log.info('Auth failed or logout successful.');
       $log.debug(authResult.error);
       $rootScope.$apply(function () {
         $rootScope.user = {

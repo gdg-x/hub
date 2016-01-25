@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gdgxHubApp')
-  .controller('AdminTagCtrl', function ($scope, $http, $routeParams) {
+  .controller('EditTagCtrl', function ($scope, $http, $routeParams) {
     var tagId = $routeParams.tagId;
     $scope.tag = {};
     $http.get('/api/v1/tags/' + tagId).then(
