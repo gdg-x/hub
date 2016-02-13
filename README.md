@@ -46,3 +46,27 @@ See the [wiki](https://github.com/gdg-x/hub/wiki/Ingesting-data-into-the-Hub).
 #### For GDG-X Core
 
 [History](https://docs.google.com/document/d/1X8fuwTvA4Y2Hm_PmP8gE_VH6kNd6lYGXjbOfoNUapcM/edit?usp=sharing&authkey=CMiRgOYF)
+
+###Contributors
+See [list of contributors](https://github.com/gdg-x/hub/graphs/contributors)
+
+Maintainer: [@splaktar](https://github.com/splaktar).
+
+######GDG Apps, GDG[x] are not endorsed and/or supported by Google, the corporation.
+
+License
+--------
+
+    © 2013-2016 GDG[x]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
