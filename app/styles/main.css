@@ -316,6 +316,11 @@ li {
       overflow: visible;
     }
 
+    #navbar.navbar-inner.navbar_open {
+      display: inline-block;
+      width: 100vw;
+    }
+
     .organizer {
       margin-left: 6px;
       margin-right: 4px;
