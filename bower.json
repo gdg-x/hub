@@ -13,7 +13,7 @@
     "angular-cookies": "1.4.7",
     "angular-sanitize": "1.4.7",
     "angular-route": "1.4.7",
-    "angular-directive.g-signin": "0.1.1",
+    "angular-directive.g-signin": "87aac779fb2b5ef4aa5a61843c963a33cc78f846",
     "angular-google-maps": "2.1.5",
     "angular-google-chart": "0.0.11",
     "angular-ui-calendar": "1.0.1",
