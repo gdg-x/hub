@@ -33,6 +33,7 @@
     "google-oauth-jwt": "0.1.7",
     "googleapis": "0.8.0",
     "lodash": "2.4.1",
+    "methods": "1.1.2",
     "mongoose": "3.5.5",
     "moment": "2.10.6",
     "newrelic": "1.5.0",
