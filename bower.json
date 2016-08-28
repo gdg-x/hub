@@ -2,17 +2,17 @@
   "name": "gdgx-hub",
   "version": "0.1.0",
   "dependencies": {
-    "angular": "1.4.7",
+    "angular": "1.5.8",
     "json3": "3.2.6",
     "es5-shim": "2.1.0",
     "jquery": "2.1.0",
     "moment": "2.6.0",
     "heatmap.js": "0.0.1",
     "moment-timezone": "0.0.6",
-    "angular-resource": "1.4.7",
-    "angular-cookies": "1.4.7",
-    "angular-sanitize": "1.4.7",
-    "angular-route": "1.4.7",
+    "angular-resource": "1.5.8",
+    "angular-cookies": "1.5.8",
+    "angular-sanitize": "1.5.8",
+    "angular-route": "1.5.8",
     "angular-directive.g-signin": "0.1.1",
     "angular-google-maps": "2.3.4",
     "angular-google-chart": "0.0.11",
@@ -21,11 +21,11 @@
     "angular-cache": "4.3.2"
   },
   "devDependencies": {
-    "angular-mocks": "1.4.7",
-    "angular-scenario": "1.4.7"
+    "angular-mocks": "1.5.8",
+    "angular-scenario": "1.5.8"
   },
   "resolutions": {
     "jquery": "2.1.0",
-    "angular": "1.4.7"
+    "angular": "1.5.8"
   }
 }
