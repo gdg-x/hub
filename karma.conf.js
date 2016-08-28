@@ -21,7 +21,7 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-directive.g-signin/google-plus-signin.js',
-      'app/bower_components/underscore/underscore.js',
+      'app/bower_components/lodash/dist/lodash.js',
       'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'app/bower_components/moment/moment.js',
