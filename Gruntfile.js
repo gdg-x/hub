@@ -149,7 +149,12 @@ module.exports = function (grunt) {
       app: {
         html: '<%= yeoman.app %>/views/index.html',
         ignorePath: '<%= yeoman.app %>/',
-        exclude: ['bower_components/moment-timezone/index.js']
+        exclude: [
+          'bower_components/moment-timezone/index.js',
+          /markerclustererplus/,
+          /google-maps-utility-library-v3/,
+          /js-rich-marker/
+        ]
       }
     },
 
