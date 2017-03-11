@@ -11,7 +11,7 @@ describe('Controller: ApiCtrl', function() {
   beforeEach(inject(function(_$httpBackend_, $controller, $rootScope) {
     $httpBackend = _$httpBackend_;
     scope = $rootScope.$new();
-    apiCtrl = $controller('ApiCtrl', {
+    apiCtrl = $controller('DeveloperCtrl', {
       $scope: scope
     });
 

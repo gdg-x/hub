@@ -33,6 +33,12 @@ module.exports = function(config) {
       'app/scripts/hub.module.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
+      'app/about/*.js',
+      'app/admin/*.js',
+      'app/chapters/*.js',
+      'app/dashboard/*.js',
+      'app/developer/*.js',
+      'app/events/*.js',
       'test/spec/**/*.js'
     ],
 

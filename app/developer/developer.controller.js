@@ -2,7 +2,7 @@
 
 angular.module('gdgxHubApp').controller('DeveloperCtrl', DeveloperCtrl);
 
-ApiCtrl.$inject = ['$scope', '$http'];
+DeveloperCtrl.$inject = ['$scope', '$http'];
 
 function DeveloperCtrl($scope, $http) {
   $http.get('/api/v1/rest').success(function(data) {
