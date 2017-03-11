@@ -7,12 +7,16 @@ angular.module('gdgxHubApp')
       GOOGLE_API_KEY: GOOGLE_API_KEY
     };
   })
-  .config(function ($routeProvider, $locationProvider, uiGmapGoogleMapApiProvider, GOOGLE_API_KEY) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider, GOOGLE_API_KEY) {
     uiGmapGoogleMapApiProvider.configure({
       key: GOOGLE_API_KEY,
       v: '3.24',
       libraries: 'weather,geometry,visualization'
     });
+
+    // Configure CSRF/XSRF names
+    $httpProvider.defaults.xsrfCookieName = '_csrf';
+    $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
 
     $routeProvider
       .when('/', {
