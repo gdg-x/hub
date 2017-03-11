@@ -10,14 +10,14 @@ angular.module('gdgxHubApp')
   .config(function ($routeProvider, $locationProvider, uiGmapGoogleMapApiProvider, GOOGLE_API_KEY) {
     uiGmapGoogleMapApiProvider.configure({
       key: GOOGLE_API_KEY,
-      v: '3.20',
+      v: '3.24',
       libraries: 'weather,geometry,visualization'
     });
 
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'partials/main',
+        controller: 'MainController'
       })
       .when('/dashboard', {
         templateUrl: 'dashboard/dashboard.html',
@@ -49,10 +49,6 @@ angular.module('gdgxHubApp')
       })
       .when('/events/devfest', {
         templateUrl: 'partials/devfest.html'
-      })
-      .when('/events/heatmap/:year/:month', {
-        templateUrl: 'events/eventsHeatmap.html',
-        controller: 'EventsHeatmapCtrl'
       })
       .when('/events/tags', {
         templateUrl: 'events/events.html',

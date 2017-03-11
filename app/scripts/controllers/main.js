@@ -1,4 +1,5 @@
 'use strict';
 
-angular.module('gdgxHubApp')
-  .controller('MainCtrl', function () {});
+angular.module('gdgxHubApp').controller('MainController', MainController);
+
+function MainController() {}

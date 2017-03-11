@@ -50,7 +50,7 @@ See the [wiki](https://github.com/gdg-x/hub/wiki/Ingesting-data-into-the-Hub).
 ###Contributors
 See [list of contributors](https://github.com/gdg-x/hub/graphs/contributors)
 
-Maintainer: [@splaktar](https://github.com/splaktar).
+Maintainer: 
 
 ######GDG Apps, GDG[x] are not endorsed and/or supported by Google, the corporation.
 
