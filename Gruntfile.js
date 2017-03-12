@@ -59,7 +59,7 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+        files: ['<%= yeoman.app %>/**/*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
@@ -67,9 +67,9 @@ module.exports = function (grunt) {
       },
       livereload: {
         files: [
-          '<%= yeoman.app %>/views/{,*//*}*.{html,jade}',
-          '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
+          '<%= yeoman.app %>/**/*.{html,jade}',
+          '{.tmp,<%= yeoman.app %>}/styles/**/*.css',
+          '{.tmp,<%= yeoman.app %>}/**/*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
 
@@ -120,9 +120,7 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.dist %>/views/*',
-            '<%= yeoman.dist %>/public/*',
-            '!<%= yeoman.dist %>/public/.git*'
+            '<%= yeoman.dist %>/**/*'
           ]
         }]
       },
@@ -137,9 +135,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
+          cwd: '.tmp/',
+          src: '**/*.css',
+          dest: '.tmp/'
         }]
       }
     },
@@ -163,10 +161,12 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= yeoman.dist %>/public/scripts/{,*/}*.js',
-            '<%= yeoman.dist %>/public/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/public/images/*.{png,jpg,jpeg,gif,webp,svg}'
-          ]
+            '<%= yeoman.dist %>/public/**/*.js',
+            '<%= yeoman.dist %>/public/**/*.css',
+            '<%= yeoman.dist %>/public/images/*.{png,jpg,jpeg,gif,webp,svg}',
+            '!<%= yeoman.dist %>/public/bower_components/**/*'
+          ],
+          filter: 'isFile'
         }
       }
     },
@@ -175,8 +175,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: ['<%= yeoman.app %>/views/index.html',
-             '<%= yeoman.app %>/views/index.jade'],
+      html: ['<%= yeoman.app %>/**/*.html'],
       options: {
         dest: '<%= yeoman.dist %>/public'
       }
@@ -184,9 +183,8 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/views/{,*/}*.html',
-             '<%= yeoman.dist %>/views/{,*/}*.jade'],
-      css: ['<%= yeoman.dist %>/public/styles/{,*/}*.css'],
+      html: ['<%= yeoman.dist %>/**/*.html'],
+      css: ['<%= yeoman.dist %>/public/**/*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>/public', '<%= yeoman.dist %>/public/images']
       }
@@ -225,9 +223,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/views',
-          src: ['*.html', 'partials/*.html', 'directives/*.html'],
-          dest: '<%= yeoman.dist %>/views'
+          cwd: '<%= yeoman.app %>/',
+          src: ['**/*.html', '!bower_components/**/*'],
+          dest: '<%= yeoman.dist %>/public/'
         }]
       }
     },
@@ -238,9 +236,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.tmp/concat/scripts',
-          src: '*.js',
-          dest: '.tmp/concat/scripts'
+          cwd: '.tmp/concat/',
+          src: '**/*.js',
+          dest: '.tmp/concat/'
         }]
       }
     },
@@ -248,7 +246,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/views/*.html']
+        html: ['<%= yeoman.dist %>/**/*.html']
       }
     },
 
@@ -270,8 +268,8 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>/views',
-          dest: '<%= yeoman.dist %>/views',
+          cwd: '<%= yeoman.app %>/**/*.html',
+          dest: '<%= yeoman.dist %>/**/*.html',
           src: '**/*.jade'
         }, {
           expand: true,
@@ -291,9 +289,9 @@ module.exports = function (grunt) {
       },
       styles: {
         expand: true,
-        cwd: '<%= yeoman.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
+        cwd: '<%= yeoman.app %>/',
+        dest: '.tmp/',
+        src: '**/*.css'
       }
     },
 

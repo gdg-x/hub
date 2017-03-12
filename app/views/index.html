@@ -32,12 +32,13 @@
   </head>
   <body ng-app="gdgxHubApp">
     <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ng-include="'partials/navbar'"></div>
+    <div ng-include="'partials/navbar.html'"></div>
     <div ng-view></div>
-    <div ng-include="'partials/footer'"></div>
+    <div ng-include="'partials/footer.html'"></div>
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -86,16 +87,17 @@
     <script src="scripts/directives/metrics.js"></script>
     <script src="scripts/directives/moment.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/dashboard.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/developer.js"></script>
-    <script src="scripts/controllers/chapterMetrics.controller.js"></script>
-    <script src="scripts/controllers/chapterCountry.controller.js"></script>
-    <script src="scripts/controllers/chapterDetail.controller.js"></script>
-    <script src="scripts/controllers/chapters.js"></script>
-    <script src="scripts/controllers/event.js"></script>
-    <script src="scripts/controllers/eventDetail.controller.js"></script>
-    <script src="scripts/controllers/gdg_stats.js"></script>
+    <script src="dashboard/dashboard.controller.js"></script>
+    <script src="about/about.controller.js"></script>
+    <script src="admin/editTag.controller.js"></script>
+    <script src="chapters/chapterMetrics.controller.js"></script>
+    <script src="chapters/chapterCountry.controller.js"></script>
+    <script src="chapters/chapterDetail.controller.js"></script>
+    <script src="chapters/chapters.controller.js"></script>
+    <script src="events/events.controller.js"></script>
+    <script src="events/eventDetail.controller.js"></script>
+    <script src="developer/developer.controller.js"></script>
+    <script src="developer/gdgStats.controller.js"></script>
     <script src="scripts/controllers/navbar.js"></script>
     <!-- endbuild -->
 </body>

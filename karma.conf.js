@@ -12,7 +12,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'http://maps.googleapis.com/maps/api/js?sensor=false',
+      'http://maps.googleapis.com/maps/api/js',
       'app/bower_components/jquery/dist/jquery.js',
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
@@ -33,6 +33,12 @@ module.exports = function(config) {
       'app/scripts/hub.module.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
+      'app/about/*.js',
+      'app/admin/*.js',
+      'app/chapters/*.js',
+      'app/dashboard/*.js',
+      'app/developer/*.js',
+      'app/events/*.js',
       'test/spec/**/*.js'
     ],
 
