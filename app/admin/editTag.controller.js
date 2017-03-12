@@ -1,20 +1,31 @@
 'use strict';
 
-angular.module('gdgxHubApp').controller('EditTagCtrl', function($scope, $http, $routeParams) {
+angular.module('gdgxHubApp').controller('EditTagCtrl', function($http, $routeParams) {
+  var vm = this;
+  vm.showSuccess = false;
+  vm.showError = false;
+
   var tagId = $routeParams.tagId;
-  $scope.tag = {};
+  vm.tag = {};
   $http.get('/api/v1/tags/' + tagId).then(function(response) {
-    $scope.tag = angular.copy(response.data);
+    vm.tag = angular.copy(response.data);
   }).catch(function(error) {
     console.log('Invalid tag: ' + tagId);
+    vm.errorText = 'Failure looking up tag: ' + error.statusText;
+    vm.errorDuration = 300000;
+    vm.showError = true;
     console.log(error);
   });
 
-  $scope.update = function(tag) {
+  vm.update = function(tag) {
     $http.put('/api/v1/tags/' + tagId, tag).then(function() {
-      console.log('tag saved');
+      console.log('Tag saved!');
+      vm.showSuccess = true;
     }).catch(function(error) {
       console.log('Invalid tag: ' + tagId);
+      vm.errorText = 'Update Failed: ' + error.statusText;
+      vm.errorDuration = 15000;
+      vm.showError = true;
       console.log(error);
     });
   };

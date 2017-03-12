@@ -81,7 +81,8 @@ angular.module('gdgxHubApp')
       })
       .when('/admin/tags/:tagId', {
         templateUrl: 'admin/editTag.html',
-        controller: 'EditTagCtrl'
+        controller: 'EditTagCtrl',
+        controllerAs: 'vm'
       })
       .otherwise({
         redirectTo: '/'
