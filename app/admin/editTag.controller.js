@@ -11,7 +11,7 @@ angular.module('gdgxHubApp').controller('EditTagCtrl', function($http, $routePar
     vm.tag = angular.copy(response.data);
   }).catch(function(error) {
     console.log('Invalid tag: ' + tagId);
-    vm.errorText = 'Failure looking up tag: ' + error.statusText;
+    vm.errorText = 'Failure looking up tag \"' + tagId + '\" - ' + error.statusText;
     vm.errorDuration = 300000;
     vm.showError = true;
     console.log(error);
