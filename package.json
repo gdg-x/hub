@@ -26,6 +26,7 @@
     "connect-redis": "3.0.1",
     "cron": "1.0.9",
     "csurf": "1.8.3",
+    "dotenv": "4.0.0",
     "ejs": "0.8.4",
     "express": "3.21.2",
     "express-annotations": "0.1.0",

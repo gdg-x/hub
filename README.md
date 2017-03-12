@@ -15,18 +15,33 @@ The public instance of the GDG[x] Hub is hosted at [https://hub.gdgx.io]
 ## Install dependencies
 Run `npm install`
 
-## Configure API keys
+## Configure Environment
 
-1. Define the **simpleApiKey**: The API key for your project, available from the [Cloud Console](https://cloud.google.com/console)
+1. Define the **GOOGLE_SIMPLE_API_KEY**: The API key for your project, available from the [Cloud Console](https://cloud.google.com/console)
     1. Create a new project then go to APIs & Auth->APIs, activate Google+ API.
     1. Go to APIs & Auth->Credentials. Add Credentials->API key->Browser key->Create (keep `Any referrer allowed` set).
-1. Define the **oauthClientId** and **oauthClientSecret**: The Client Id and secret for your project, available from the [Cloud Console](https://cloud.google.com/console)
+1. Define the **GOOGLE_OAUTH_CLIENT_ID** and **GOOGLE_OAUTH_CLIENT_SECRET**: The Client Id and secret for your project, available from the [Cloud Console](https://cloud.google.com/console)
     1. Go to APIs & Auth->Credentials. Add Credentials->API key->OAuth 2.0 client ID->Web Application->Create.
+1. Create a private `.env` file in the root of the project with the following contents:
+    ```
+    GOOGLE_SIMPLE_API_KEY=
+    GOOGLE_OAUTH_CLIENT_ID=
+    GOOGLE_OAUTH_CLIENT_SECRET=
+    SERVER_KEY_SECRET=
+    ANDROID_CLIENT_IDS=
+    MONGODB_DB_URL=
+    NODEJS_PORT=
+    NODEJS_IP=
+    SESSION_SECRET=
+    ```
+1. Populate the `.env` file with the following variables that were provided to you:
 
-* lib/config/keys.js
-    * simpleApiKey - Browser key from step 1
-    * oauthClientId - Web Application clientId from step 2
-    * oauthClientSecret - Web Application client secret from step 2
+    * GOOGLE_SIMPLE_API_KEY - Browser key from step 1
+    * GOOGLE_OAUTH_CLIENT_ID - Web Application clientId from step 2
+    * GOOGLE_OAUTH_CLIENT_SECRET - Web Application client secret from step 2
+    * SERVER_KEY_SECRET - Only needed for testing Frisbee integration
+    * ANDROID_CLIENT_IDS - Only needed for testing Frisbee integration. Needs to be a comma separated list
+    * SESSION_SECRET - random 34 characters
 
 ## Check Mongo Server
 Run `mongostart` or `mongod`
@@ -57,7 +72,7 @@ Maintainer:
 License
 --------
 
-    © 2013-2016 GDG[x]
+    © 2013-2017 GDG[x]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
