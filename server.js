@@ -1,11 +1,21 @@
 'use strict';
 
+var env = require('dotenv').config({path: process.env.NODE_ENV === 'production' ? '.env-prod' : '.env'});
+if (env && !env.error) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(JSON.stringify(env));
+  }
+} else {
+  console.error(JSON.stringify(env));
+}
+
 var express = require('express'),
   path = require('path'),
   fs = require('fs'),
   cluster = require('cluster'),
   numCPUs = require('os').cpus().length,
   mongoose = require('mongoose');
+
 /**
  * Main application file
  */

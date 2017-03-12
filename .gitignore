@@ -11,3 +11,5 @@ dist
 newrelic_agent.log
 .c9
 mongodb
+.env
+.env-prod
