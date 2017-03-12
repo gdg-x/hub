@@ -43,22 +43,7 @@ angular.module('gdgxHubApp')
         templateUrl: 'chapters/chapterDetail.html',
         controller: 'ChapterDetailCtrl'
       })
-      .when('/chapters/:chapterId/metrics', {
-        templateUrl: 'chapters/chapterMetrics.html',
-        controller: 'ChapterMetricsCtrl'
-      })
       .when('/events', {
-        templateUrl: 'events/events.html',
-        controller: 'EventsCtrl'
-      })
-      .when('/events/devfest', {
-        templateUrl: 'partials/devfest.html'
-      })
-      .when('/events/tags', {
-        templateUrl: 'events/events.html',
-        controller: 'EventsCtrl'
-      })
-      .when('/events/tags/:tag', {
         templateUrl: 'events/events.html',
         controller: 'EventsCtrl'
       })

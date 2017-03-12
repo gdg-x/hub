@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: ApiCtrl', function() {
+describe('Controller: DeveloperCtrl', function() {
 
   // load the controller's module
   beforeEach(module('gdgxHubApp'));
 
-  var apiCtrl, scope, $httpBackend;
+  var developerCtrl, scope, $httpBackend;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function(_$httpBackend_, $controller, $rootScope) {
     $httpBackend = _$httpBackend_;
     scope = $rootScope.$new();
-    apiCtrl = $controller('DeveloperCtrl', {
+    developerCtrl = $controller('DeveloperCtrl', {
       $scope: scope
     });
 
