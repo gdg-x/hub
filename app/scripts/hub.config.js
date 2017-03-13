@@ -7,12 +7,16 @@ angular.module('gdgxHubApp')
       GOOGLE_API_KEY: GOOGLE_API_KEY
     };
   })
-  .config(function ($routeProvider, $locationProvider, uiGmapGoogleMapApiProvider, GOOGLE_API_KEY) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider, GOOGLE_API_KEY) {
     uiGmapGoogleMapApiProvider.configure({
       key: GOOGLE_API_KEY,
       v: '3.24',
       libraries: 'weather,geometry,visualization'
     });
+
+    // Configure CSRF/XSRF names
+    $httpProvider.defaults.xsrfCookieName = '_csrf';
+    $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
 
     $routeProvider
       .when('/', {
@@ -20,46 +24,46 @@ angular.module('gdgxHubApp')
         controller: 'MainController'
       })
       .when('/dashboard', {
-        templateUrl: 'partials/dashboard',
+        templateUrl: 'dashboard/dashboard.html',
         controller: 'DashboardCtrl'
       })
       .when('/about', {
-        templateUrl: 'partials/about',
+        templateUrl: 'about/about.html',
         controller: 'AboutCtrl'
       })
       .when('/chapters', {
-        templateUrl: 'partials/chapters',
+        templateUrl: 'chapters/chapters.html',
         controller: 'ChapterCtrl'
       })
       .when('/chapters/country/:country', {
-        templateUrl: 'partials/chapter_country',
+        templateUrl: 'chapters/chapterCountry.html',
         controller: 'ChapterCountryCtrl'
       })
       .when('/chapters/:chapterId', {
-        templateUrl: 'partials/chapter',
+        templateUrl: 'chapters/chapterDetail.html',
         controller: 'ChapterDetailCtrl'
       })
       .when('/chapters/:chapterId/metrics', {
-        templateUrl: 'partials/chapter_metrics',
+        templateUrl: 'chapters/chapterMetrics.html',
         controller: 'ChapterMetricsCtrl'
       })
       .when('/events', {
-        templateUrl: 'partials/events',
-        controller: 'EventCtrl'
+        templateUrl: 'events/events.html',
+        controller: 'EventsCtrl'
       })
       .when('/events/devfest', {
-        templateUrl: 'partials/devfest'
+        templateUrl: 'partials/devfest.html'
       })
       .when('/events/tags', {
-        templateUrl: 'partials/events',
-        controller: 'EventCtrl'
+        templateUrl: 'events/events.html',
+        controller: 'EventsCtrl'
       })
       .when('/events/tags/:tag', {
-        templateUrl: 'partials/events',
-        controller: 'EventCtrl'
+        templateUrl: 'events/events.html',
+        controller: 'EventsCtrl'
       })
       .when('/events/:eventId', {
-        templateUrl: 'partials/event',
+        templateUrl: 'events/eventDetail.html',
         controller: 'EventDetailCtrl',
         resolve: {
           'MomentTimezone': ['MomentTimezone', function (MomentTimezone) {
@@ -68,12 +72,17 @@ angular.module('gdgxHubApp')
         }
       })
       .when('/developers/api', {
-        templateUrl: 'partials/api',
-        controller: 'ApiCtrl'
+        templateUrl: 'developer/developer.html',
+        controller: 'DeveloperCtrl'
       })
       .when('/statistics', {
-        templateUrl: 'partials/gdg_stats',
+        templateUrl: 'developer/gdgStats.html',
         controller: 'GdgStatsCtrl'
+      })
+      .when('/admin/tags/:tagId', {
+        templateUrl: 'admin/editTag.html',
+        controller: 'EditTagCtrl',
+        controllerAs: 'vm'
       })
       .otherwise({
         redirectTo: '/'

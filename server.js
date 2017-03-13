@@ -46,7 +46,7 @@ if (cluster.isMaster) {
     setTimeout(function () {
       var worker = cluster.fork();
       initWorker(worker);
-      console.log('worker started, PID ' + worker.process.pid);
+      console.log('Worker started, PID ' + worker.process.pid);
     }, (i + 1) * 5000); // jshint ignore:line
   }
 
