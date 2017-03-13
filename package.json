@@ -38,7 +38,6 @@
     "newrelic": "1.5.0",
     "node-forge": "0.6.34",
     "node-geocoder": "2.2.0",
-    "node-phantom": "0.2.5",
     "node-uuid": "1.4.3",
     "nodemailer": "1.4.0",
     "passport": "0.3.0",
