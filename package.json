@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/gdg-x/hub/issues"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "dependencies": {
     "async": "1.4.2",
     "burrito": "0.2.12",
