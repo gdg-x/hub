@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('gdgxHubApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ngRoute', 'd3', 'moment-timezone',
-  'googlechart', 'ui.calendar', 'ui.bootstrap', 'uiGmapgoogle-maps', 'gdgxHubApp.directives.gplus',
-  'gdgxHubApp.directives.metrics', 'gdgxHubApp.directives.d3', 'gdgxHubApp.directives.moment', 'directive.g+signin'
+  'googlechart', 'ui.calendar', 'ui.bootstrap', 'uiGmapgoogle-maps', 'gdgxHubApp.directives.gplus', 'gdgxHubApp.directives.d3',
+  'gdgxHubApp.directives.moment', 'directive.g+signin'
 ])
   .run(function ($rootScope, $location, $http, $window, $log, Utilities, config) {
     $rootScope.user = {
