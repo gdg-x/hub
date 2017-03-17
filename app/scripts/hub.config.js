@@ -10,7 +10,7 @@ angular.module('gdgxHubApp')
   .config(function ($routeProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider, GOOGLE_API_KEY) {
     uiGmapGoogleMapApiProvider.configure({
       key: GOOGLE_API_KEY,
-      v: '3.24',
+      v: '3.27',
       libraries: 'weather,geometry,visualization'
     });
 
