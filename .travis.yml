@@ -4,5 +4,6 @@ node_js:
   - '6'
   - '7'
 before_script:
-  - npm install -g grunt-cli
+  - npm install -g bower grunt-cli
+  - bower install
 services: mongodb
