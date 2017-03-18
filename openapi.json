@@ -1,0 +1,131 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "GDG-X Hub API",
+    "description": "API for using data from the Google Developer Groups (GDG) Hub.",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "GDG-X Support",
+      "email": "support@gdgx.io"
+    }
+  },
+  "host": "api.gdgx.io",
+  "basePath": "/api/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/chapters": {
+      "get": {
+        "operationId": "listChapters",
+        "description": "Returns a list containing all Chapters",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ChapterList"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ChapterList": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "number"
+        },
+        "pages": {
+          "type": "number"
+        },
+        "page": {
+          "type": "number"
+        },
+        "perpage": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Chapter"
+          }
+        }
+      }
+    },
+    "Chapter": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "site": {
+          "type": "string"
+        },
+        "group_type": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number"
+        },
+        "organizers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "geo": {
+          "$ref": "#/definitions/Location"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "required": [
+        "lng", "lat"
+      ],
+      "properties": {
+        "lng": {
+          "type": "number"
+        },
+        "lat": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "security": [
+
+  ],
+  "securityDefinitions": {
+
+  }
+}

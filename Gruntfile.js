@@ -282,7 +282,6 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server.js',
-            'newrelic.js',
             'lib/**/*'
           ]
         }]
@@ -352,7 +351,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'express:prod', 'open', 'express-keepalive']);
+      return grunt.task.run(['build', 'express:prod', 'express-keepalive']);
     }
 
     grunt.task.run([
