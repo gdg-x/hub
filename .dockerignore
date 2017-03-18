@@ -1,0 +1,16 @@
+test/
+
+node_modules/
+.git/
+coverage/
+npm-debug.log
+
+.dockerignore
+Dockerfile
+
+.gitignore
+.gitattributes
+.editorconfig
+.idea/
+*.md
+*.iml

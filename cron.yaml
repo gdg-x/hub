@@ -1,0 +1,4 @@
+cron:
+- description: daily 9am EST ingestion job
+  url: /
+  schedule: every day 13:00
