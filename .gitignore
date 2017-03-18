@@ -13,3 +13,4 @@ newrelic_agent.log
 mongodb
 .env
 .env-prod
+.vscode
