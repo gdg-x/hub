@@ -72,11 +72,11 @@ function listen() {
   // Express settings
   require('./lib/config/express')(app);
 
-  // Routing
-  require('./lib/routes')(app);
+// Routing
+require('./lib/routes')(app);
 
-  // Initialize cron jobs
-  require('./lib/cron')();
+// Initialize cron jobs
+require('./lib/cron')();
 
   // Start server
   app.listen(config.port, config.hostname, function() {
