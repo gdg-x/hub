@@ -1,5 +1,7 @@
 'use strict';
 
+require('@google-cloud/trace-agent').start();
+
 var env = require('dotenv').config({path: process.env.NODE_ENV === 'production' ? '.env-prod' : '.env'});
 if (env && !env.error) {
   if (process.env.NODE_ENV !== 'production') {
@@ -13,6 +15,7 @@ var express = require('express'),
   path = require('path'),
   fs = require('fs'),
   mongoose = require('mongoose');
+require('@google-cloud/debug-agent').start({ allowExpressions: true });
 
 /**
  * Main application file

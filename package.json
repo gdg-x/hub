@@ -18,6 +18,8 @@
   },
   "version": "0.2.1",
   "dependencies": {
+    "@google-cloud/debug-agent": "1.0.0",
+    "@google-cloud/trace-agent": "1.0.1",
     "async": "1.4.2",
     "body-parser": "1.17.1",
     "bower": "1.8.0",
@@ -35,8 +37,6 @@
     "express": "4.15.2",
     "express-rate": "0.0.1",
     "express-session": "1.15.1",
-    "jpegtran-bin": "0.2.0",
-    "jshint-stylish": "2.2.1",
     "google-oauth-jwt": "0.1.7",
     "googleapis": "0.8.0",
     "grunt": "0.4.5",
@@ -64,6 +64,8 @@
     "grunt-rev": "0.1.0",
     "grunt-svgmin": "0.2.0",
     "grunt-usemin": "2.0.0",
+    "jpegtran-bin": "0.2.0",
+    "jshint-stylish": "2.2.1",
     "karma": "1.2.0",
     "load-grunt-tasks": "0.2.0",
     "lodash": "2.4.1",
@@ -86,8 +88,8 @@
     "socket.io": "0.9.17",
     "superagent": "0.17.0",
     "superagent-retry": "0.3.0",
-    "timequeue": "0.2.2",
     "time-grunt": "0.2.10",
+    "timequeue": "0.2.2",
     "yes-https": "0.0.3"
   },
   "devDependencies": {
