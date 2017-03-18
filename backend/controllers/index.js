@@ -1,5 +1,6 @@
 'use strict'
 
 module.exports = {
-  health: require('./health')
+  health: require('./health'),
+  user: require('./user')
 }
