@@ -8,7 +8,7 @@ endpoints_api_service:
   config_id: 2017-03-18r0
 network:
   instance_tag: https-server
-  name: gdg-x
+  name: default
 automatic_scaling:
   min_num_instances: 1
   max_num_instances: 2

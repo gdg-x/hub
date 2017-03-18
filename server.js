@@ -1,6 +1,8 @@
 'use strict';
 
-require('@google-cloud/trace-agent').start();
+if (process.env.NODE_ENV === 'production') {
+  require('@google-cloud/trace-agent').start();
+}
 
 var env = require('dotenv').config({path: process.env.NODE_ENV === 'production' ? '.env-prod' : '.env'});
 if (env && !env.error) {
@@ -16,6 +18,7 @@ var express = require('express'),
   fs = require('fs'),
   mongoose = require('mongoose');
 require('@google-cloud/debug-agent').start({ allowExpressions: true });
+var app = express();
 
 /**
  * Main application file
@@ -48,30 +51,38 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
 
-// Import static data
-require('./lib/fixtures')();
+db.connection
+  .on('error', console.error)
+  .on('disconnected', console.error)
+  .once('open', listen);
 
-// Passport Configuration
-require('./lib/config/passport')();
+function listen() {
+  console.log('Connected to MongoDb at ' +
+    `mongodb://${db.connection.host}/${db.connection.name}:${db.connection.port}.`);
 
-// Initialize admin task handlers
-require('./lib/tasks')();
+  // Import static data
+  require('./lib/fixtures')();
 
-var app = express();
+  // Passport Configuration
+  require('./lib/config/passport')();
 
-// Express settings
-require('./lib/config/express')(app);
+  // Initialize admin task handlers
+  require('./lib/tasks')();
 
-// Routing
-require('./lib/routes')(app);
+  // Express settings
+  require('./lib/config/express')(app);
 
-// Initialize cron jobs
-require('./lib/cron')();
+  // Routing
+  require('./lib/routes')(app);
 
-// Start server
-app.listen(config.port, config.hostname, function () {
-  console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
-});
+  // Initialize cron jobs
+  require('./lib/cron')();
+
+  // Start server
+  app.listen(config.port, config.hostname, function() {
+    console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+  });
+}
 
 // Expose app
 exports = module.exports = app;
