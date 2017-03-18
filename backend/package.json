@@ -24,17 +24,14 @@
     "express": "^4.15.2",
     "mongoose": "^4.9.0",
     "nconf": "^0.8.4",
+    "passport": "^0.3.2",
     "socket.io": "^1.7.3"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=4"
   },
   "scripts": {
-    "prestart": "grunt",
-    "start": "grunt serve",
-    "startProd": "grunt serve:dist",
-    "configProd": "sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000;export PORT=3000;",
-    "test": "grunt test"
+    "start": "node index.js",
+    "dev": "node index.js"
   }
 }

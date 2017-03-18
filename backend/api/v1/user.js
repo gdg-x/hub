@@ -2,9 +2,9 @@
 
 const router = require('express').Router()
 const controller = require('../../controllers/user')
+const mw = require('../../services/middleware')
 
 router.route('/')
-  .get(controller.list)
+  .get(mw.auth(), controller.list)
 
 module.exports = router
-
