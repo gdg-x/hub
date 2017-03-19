@@ -6,7 +6,7 @@ const Bluebird = require('bluebird')
 
 // Connect to mongo
 mongoose.Promise = Bluebird
-if (!mongoose.connection.db) mongoose.connect(config.get('DB_URI'))
+if (!mongoose.connection.db) mongoose.connect(config.get('MONGODB_DB_URL'))
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', console.log.bind(console, 'connected to mongodb'))
