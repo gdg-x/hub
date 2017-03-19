@@ -6,6 +6,9 @@ const passport = require('passport')
  * Custom middleware used by the application
  */
 module.exports = {
+  frisbee: function () {
+    passport.authenticate('bearer-frisbee', {session: false})
+  },
   auth: function (options) {
     options = options || {}
     var allowSession = options.allowSession ? options.allowSession : false
