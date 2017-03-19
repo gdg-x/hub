@@ -1,13 +1,11 @@
 'use strict'
 
-const _ = require('lodash')
-const User = require('../models/user')
 const Chapter = require('../models/chapter')
 
 /**
  * Returns if the specified Google+ user is an Organizer of one or more Chapters
  */
-exports.list = function (req, res, next) {
+exports.list = function list (req, res, next) {
   Chapter.find({organizers: req.params.gplusId}, function (err, chapters) {
     if (err) {
       console.log(err)

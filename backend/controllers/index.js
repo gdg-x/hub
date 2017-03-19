@@ -2,5 +2,6 @@
 
 module.exports = {
   health: require('./health'),
-  user: require('./user')
+  user: require('./user'),
+  admin: require('./admin')
 }

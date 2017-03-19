@@ -1,5 +1,5 @@
 'use strict'
 
-exports.echo = function (req, res, next) {
+exports.echo = function echo (req, res, next) {
   res.sendStatus(200)
 }
