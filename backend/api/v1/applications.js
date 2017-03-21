@@ -1,7 +1,7 @@
 'use strict'
 
 const router = require('express').Router()
-const controller = require('../../controllers/admin')
+const controller = require('../../controllers/applications')
 const mw = require('../../services/middleware')
 
 router.route('/applications')
