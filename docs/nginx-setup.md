@@ -12,7 +12,7 @@ sudo apt-get install nginx
 sudo service nginx status
 ```
 
-- setup a virtual host config as in `./nginx.conf`
+- setup a virtual host config as in [nginx.conf](nginx.conf)
 
 - create a softlink for hostifle to be ready
 
@@ -20,7 +20,7 @@ sudo service nginx status
   sudo ln -s /etc/nginx/sites-available/subsites /etc/nginx/sites-enabled/subsites
 ```
 
-- get a cert using LetsEncrypt (install letsencrypt using `./letsencrypt-setup.md`)
+- get a cert using LetsEncrypt (install letsencrypt using [letsencrypt-setup.md](letsencrypt-setup.md)
 
 ```
 sudo letsencrypt certonly -a webroot --webroot-path=/var/www/html -d hub.gdgx.io
