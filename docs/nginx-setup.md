@@ -12,15 +12,15 @@ sudo apt-get install nginx
 sudo service nginx status
 ```
 
-- setup a virtual host config as in [nginx.conf](nginx.conf)
+- Setup a virtual host config as in [nginx.conf](nginx.conf)
 
-- create a softlink for hostifle to be ready
+- Create a softlink for hostifle to be ready
 
 ```
   sudo ln -s /etc/nginx/sites-available/subsites /etc/nginx/sites-enabled/subsites
 ```
 
-- get a cert using LetsEncrypt (install letsencrypt using [letsencrypt-setup.md](letsencrypt-setup.md)
+- Get a cert using LetsEncrypt (install letsencrypt using [letsencrypt-setup.md](letsencrypt-setup.md))
 
 ```
 sudo letsencrypt certonly -a webroot --webroot-path=/var/www/html -d hub.gdgx.io
@@ -29,19 +29,19 @@ sudo letsencrypt certonly -a webroot --webroot-path=/var/www/html -d hub.gdgx.io
 ./letsencrypt-auto certonly -a standalone -d hub.gdgx.io
 ```
 
-- check if certs are present locally now
+- Check if certs are present locally now
 
 ```
 sudo ls -l /etc/letsencrypt/live/hub.gdgx.io
 ```
 
-- create a secure private key
+- Create a secure private key
 
 ```
 sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```
 
-- create SSL cert conf file for nginx
+- Create SSL cert conf file for nginx
 
 ```
 sudo nano /etc/nginx/snippets/ssl-hub.gdgx.io.conf
@@ -53,7 +53,7 @@ ssl_certificate /etc/letsencrypt/live/hub.gdgx.io/fullchain.pem;
 ssl_certificate_key /etc/letsencrypt/live/hub.gdgx.io/privkey.pem;
 ```
 
-- create SSL params conf file for nginx
+- Create SSL params conf file for nginx
 ```
 sudo nano /etc/nginx/snippets/ssl-params.conf
 ```
@@ -102,7 +102,7 @@ sudo service nginx restart
 sudo crontab -e
 ```
 
-- crontab entry
+- Crontab entry
 
 ```
 30 2 * * 1 /usr/bin/letsencrypt renew >> /var/log/le-renew.log
