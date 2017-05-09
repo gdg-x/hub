@@ -5,12 +5,14 @@ GDG[x] Hub
 
 [![Build Status](https://travis-ci.org/gdg-x/hub.png?branch=master)](https://travis-ci.org/gdg-x/hub)
 
-The public instance of the GDG[x] Hub is hosted at [https://hub.gdgx.io]
+The public instance of the [GDG[x] Hub](https://hub.gdgx.io).
+
+# Maintainer Needed
+We're looking for a lead maintainer to contribute to and take over maintenance of this project. Please contact us in the [GDG-X G+ Community](https://plus.google.com/communities/102264418110444725395) if you are interested.
 
 ## Required tools
 * [Node.js](https://nodejs.org/download/)
 * [MongoDB](https://github.com/gdg-x/hub/wiki/MongoDB-Config)
-
 
 ## Install dependencies
 Run `npm install`
