@@ -1,0 +1,12 @@
+bower_components
+node_modules
+.bower-cache
+.bower-registry
+.bower-tmp
+.vscode
+.git
+.gitignore
+LICENSE
+VERSION
+README.md
+docs
