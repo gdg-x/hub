@@ -64,12 +64,12 @@ See the [wiki](https://github.com/gdg-x/hub/wiki/Ingesting-data-into-the-Hub).
 
 [History](https://docs.google.com/document/d/1X8fuwTvA4Y2Hm_PmP8gE_VH6kNd6lYGXjbOfoNUapcM/edit?usp=sharing&authkey=CMiRgOYF)
 
-###Contributors
+### Contributors
 See [list of contributors](https://github.com/gdg-x/hub/graphs/contributors)
 
-Maintainer: 
+Maintainer: None.
 
-######GDG Apps, GDG[x] are not endorsed and/or supported by Google, the corporation.
+###### GDG Apps, GDG[x] are not endorsed and/or supported by Google, the corporation.
 
 License
 --------
