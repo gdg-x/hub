@@ -18,6 +18,7 @@
   },
   "version": "0.2.1",
   "dependencies": {
+    "@google-cloud/pubsub": "^0.8.3",
     "async": "1.4.2",
     "body-parser": "1.17.1",
     "burrito": "0.2.12",
@@ -36,6 +37,7 @@
     "google-oauth-jwt": "0.1.7",
     "googleapis": "0.8.0",
     "lodash": "2.4.1",
+    "meetup-api": "^1.4.9",
     "method-override": "2.3.7",
     "methods": "1.1.2",
     "moment": "2.10.6",
